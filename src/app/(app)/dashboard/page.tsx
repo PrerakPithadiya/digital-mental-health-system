@@ -1,0 +1,114 @@
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { ArrowRight, Bot, CalendarCheck, Library, ShieldAlert } from "lucide-react";
+import Link from "next/link";
+import Image from "next/image";
+import { PlaceHolderImages } from "@/lib/placeholder-images";
+
+const aiSupportImage = PlaceHolderImages.find(img => img.id === 'ai-support-avatar');
+const bookingImage = PlaceHolderImages.find(img => img.id === 'booking-card');
+const resourcesImage = PlaceHolderImages.find(img => img.id === 'resources-card');
+
+export default function DashboardPage() {
+  return (
+    <div className="flex flex-col gap-8">
+      <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+        <div>
+          <h1 className="font-headline text-3xl md:text-4xl font-bold">
+            Welcome, Student
+          </h1>
+          <p className="mt-2 text-lg text-muted-foreground">
+            Your space for mental wellness and support.
+          </p>
+        </div>
+        <Button variant="destructive" size="lg" asChild>
+          <Link href="/urgent-support">
+            <ShieldAlert className="mr-2 h-5 w-5" />
+            Urgent Support
+          </Link>
+        </Button>
+      </div>
+
+      <Card className="bg-primary/10 border-primary/20">
+        <CardHeader className="flex flex-row items-center gap-4">
+          {aiSupportImage &&
+            <Image 
+              src={aiSupportImage.imageUrl} 
+              alt={aiSupportImage.description} 
+              width={64} 
+              height={64} 
+              className="rounded-full border-2 border-primary"
+              data-ai-hint={aiSupportImage.imageHint}
+            />
+          }
+          <div>
+            <CardTitle className="font-headline text-2xl">AI-Guided Support</CardTitle>
+            <CardDescription className="text-foreground/80">
+              Get immediate, personalized coping strategies from our AI assistant.
+            </CardDescription>
+          </div>
+        </CardHeader>
+        <CardContent>
+          <p className="mb-4">
+            Feeling overwhelmed, anxious, or just not like yourself? Start a conversation with our AI chatbot. It can help you understand what you're feeling and provide you with actionable steps to start feeling better.
+          </p>
+          <Button asChild>
+            <Link href="/ai-support">
+              Start a Session <ArrowRight className="ml-2 h-4 w-4" />
+            </Link>
+          </Button>
+        </CardContent>
+      </Card>
+      
+      <div className="grid md:grid-cols-2 gap-6">
+        <Card className="hover:shadow-lg transition-shadow">
+          {bookingImage && 
+            <div className="aspect-video w-full overflow-hidden rounded-t-lg">
+              <Image 
+                src={bookingImage.imageUrl} 
+                alt={bookingImage.description} 
+                width={400} 
+                height={250} 
+                className="w-full h-full object-cover"
+                data-ai-hint={bookingImage.imageHint}
+              />
+            </div>
+          }
+          <CardHeader>
+            <CardTitle className="font-headline flex items-center gap-2"><CalendarCheck className="text-primary"/>Confidential Booking</CardTitle>
+            <CardDescription>Schedule a private session with a professional counselor.</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <Button variant="secondary" asChild>
+              <Link href="/booking">View Counselors</Link>
+            </Button>
+          </CardContent>
+        </Card>
+        
+        <Card className="hover:shadow-lg transition-shadow">
+          {resourcesImage && 
+            <div className="aspect-video w-full overflow-hidden rounded-t-lg">
+              <Image 
+                src={resourcesImage.imageUrl} 
+                alt={resourcesImage.description} 
+                width={400} 
+                height={250} 
+                className="w-full h-full object-cover"
+                data-ai-hint={resourcesImage.imageHint}
+              />
+            </div>
+          }
+          <CardHeader>
+            <CardTitle className="font-headline flex items-center gap-2"><Library className="text-primary"/>Resource Library</CardTitle>
+            <CardDescription>Explore articles, videos, and guides on mental wellness.</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <Button variant="secondary" asChild>
+              <Link href="/resources">Explore Resources</Link>
+            </Button>
+          </CardContent>
+        </Card>
+      </div>
+    </div>
+  );
+}
