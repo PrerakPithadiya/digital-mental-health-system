@@ -4,6 +4,7 @@ import { ArrowRight, Bot, CalendarCheck, Library, ShieldAlert } from "lucide-rea
 import Link from "next/link";
 import Image from "next/image";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
+import UpcomingAppointments from "@/components/dashboard/upcoming-appointments";
 
 const bookingImage = PlaceHolderImages.find(img => img.id === 'booking-card');
 const resourcesImage = PlaceHolderImages.find(img => img.id === 'resources-card');
@@ -27,6 +28,8 @@ export default function DashboardPage() {
           </Link>
         </Button>
       </div>
+
+      <UpcomingAppointments />
 
       <Card className="border-primary/20 bg-primary/5">
         <CardHeader>
