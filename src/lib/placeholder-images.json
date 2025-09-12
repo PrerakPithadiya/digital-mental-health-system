@@ -4,7 +4,7 @@
     {
       "id": "dashboard-hero",
       "description": "Abstract flowing shapes and nature-inspired motifs",
-      "imageUrl": "https://picsum.photos/seed/wellspring1/1200/400",
+      "imageUrl": "https://picsum.photos/seed/calm-abstract/1200/400",
       "imageHint": "calm abstract"
     },
     {
@@ -16,14 +16,14 @@
     {
       "id": "booking-card",
       "description": "Image for the booking card",
-      "imageUrl": "https://picsum.photos/seed/wellspring3/400/250",
-      "imageHint": "calendar schedule"
+      "imageUrl": "https://picsum.photos/seed/growth-hope/400/250",
+      "imageHint": "hope growth"
     },
     {
       "id": "resources-card",
       "description": "Image for the resources card",
-      "imageUrl": "https://picsum.photos/seed/wellspring4/400/250",
-      "imageHint": "books shelf"
+      "imageUrl": "https://picsum.photos/seed/wellness-journey/400/250",
+      "imageHint": "wellness journey"
     },
     {
       "id": "counselor-1",
