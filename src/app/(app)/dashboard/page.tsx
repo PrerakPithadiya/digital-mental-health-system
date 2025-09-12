@@ -6,17 +6,22 @@ import Image from "next/image";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
 import UpcomingAppointments from "@/components/dashboard/upcoming-appointments";
 import MoodCheckin from "@/components/dashboard/mood-checkin";
+import { getSession } from "@/lib/session";
+import { User } from "@/lib/definitions";
 
 const bookingImage = PlaceHolderImages.find(img => img.id === 'booking-card');
 const resourcesImage = PlaceHolderImages.find(img => img.id === 'resources-card');
 
-export default function DashboardPage() {
+export default async function DashboardPage() {
+  const session = await getSession();
+  const user = session?.user as User | null;
+
   return (
     <div className="flex flex-col gap-8">
       <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
         <div>
           <h1 className="font-headline text-3xl md:text-4xl font-bold">
-            Welcome, Student
+            Welcome, {user?.username || 'Student'}
           </h1>
           <p className="mt-2 text-lg text-muted-foreground">
             Your confidential space for mental wellness and support.

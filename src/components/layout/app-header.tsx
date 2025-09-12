@@ -3,8 +3,9 @@ import { Button } from "../ui/button";
 import { ShieldAlert } from "lucide-react";
 import Link from "next/link";
 import { UserNav } from "../user-nav";
+import { User } from "@/lib/definitions";
 
-export default function AppHeader() {
+export default function AppHeader({ user }: { user: User }) {
   return (
     <header className="sticky top-0 z-10 flex h-16 items-center gap-4 border-b bg-background/80 px-4 backdrop-blur md:px-6">
       <SidebarTrigger className="md:hidden" />
@@ -15,7 +16,7 @@ export default function AppHeader() {
             Urgent Support
           </Link>
         </Button>
-        <UserNav />
+        <UserNav user={user}/>
       </div>
     </header>
   );
