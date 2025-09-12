@@ -36,8 +36,14 @@ export default function AiChat() {
     setIsLoading(true);
 
     try {
-      const aiResponse = await getAiAssessment(input);
-      const assistantMessage: Message = { role: 'assistant', content: aiResponse };
+      const result = await getAiAssessment(input);
+      let aiContent = '';
+      if (result.success) {
+        aiContent = `${result.assessment}\n\n${result.copingStrategies}`;
+      } else {
+        aiContent = result.message;
+      }
+      const assistantMessage: Message = { role: 'assistant', content: aiContent };
       setMessages((prev) => [...prev, assistantMessage]);
     } catch (error) {
       const errorMessage: Message = {

@@ -5,7 +5,7 @@ import {redirect} from 'next/navigation';
 import {cookies} from 'next/headers';
 import bcrypt from 'bcryptjs';
 import clientPromise from '@/lib/mongodb';
-import {clearSession, decrypt, encrypt} from '@/lib/session';
+import {clearSession, encrypt} from '@/lib/session';
 
 const registerSchema = z.object({
   username: z.string().min(3, 'Username must be at least 3 characters'),
@@ -71,7 +71,7 @@ export async function login(prevState: string | undefined, formData: FormData) {
       return 'Invalid username or password.';
     }
 
-    const passwordsMatch = await bcrypt.compare(password, user.password);
+    const passwordsMatch = await bcrypt.compare(password, user.password as string);
     if (!passwordsMatch) {
       return 'Invalid username or password.';
     }
