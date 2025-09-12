@@ -29,7 +29,7 @@ export async function register(prevState: string | undefined, formData: FormData
 
   try {
     const client = await clientPromise;
-    const db = client.db('wellspring');
+    const db = client.db('digital_mental_health_system');
     const usersCollection = db.collection('users');
 
     const existingUser = await usersCollection.findOne({username});
@@ -63,7 +63,7 @@ export async function login(prevState: string | undefined, formData: FormData) {
 
   try {
     const client = await clientPromise;
-    const db = client.db('wellspring');
+    const db = client.db('digital_mental_health_system');
     const usersCollection = db.collection('users');
 
     const user = await usersCollection.findOne({username});
