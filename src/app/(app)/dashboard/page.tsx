@@ -29,29 +29,14 @@ export default function DashboardPage() {
         </Button>
       </div>
 
-      <Card className="bg-primary/10 border-primary/20">
-        <CardHeader className="flex flex-row items-center gap-4">
-          {aiSupportImage &&
-            <Image 
-              src={aiSupportImage.imageUrl} 
-              alt={aiSupportImage.description} 
-              width={64} 
-              height={64} 
-              className="rounded-full border-2 border-primary"
-              data-ai-hint={aiSupportImage.imageHint}
-            />
-          }
-          <div>
-            <CardTitle className="font-headline text-2xl">AI-Guided Support</CardTitle>
-            <CardDescription className="text-foreground/80">
-              Get immediate, personalized coping strategies from our AI assistant.
-            </CardDescription>
-          </div>
+      <Card className="border-border">
+        <CardHeader>
+          <CardTitle className="font-headline text-2xl">AI-Guided Support</CardTitle>
+          <CardDescription>
+            Feeling overwhelmed, anxious, or just not like yourself? Start a conversation with our AI chatbot. It can help you understand what you're feeling and provide you with actionable steps to start feeling better.
+          </CardDescription>
         </CardHeader>
         <CardContent>
-          <p className="mb-4">
-            Feeling overwhelmed, anxious, or just not like yourself? Start a conversation with our AI chatbot. It can help you understand what you're feeling and provide you with actionable steps to start feeling better.
-          </p>
           <Button asChild>
             <Link href="/ai-support">
               Start a Session <ArrowRight className="ml-2 h-4 w-4" />
