@@ -8,7 +8,7 @@ const publicRoutes = ['/login', '/register'];
 
 export default async function middleware(req: NextRequest) {
   const path = req.nextUrl.pathname;
-  const isProtectedRoute = protectedRoutes.includes(path);
+  const isProtectedRoute = protectedRoutes.some(prefix => path.startsWith(prefix));
   const isPublicRoute = publicRoutes.includes(path);
 
   // 2. Decrypt the session from the cookie
@@ -30,23 +30,7 @@ export default async function middleware(req: NextRequest) {
   }
 
   // 5. If none of the above, continue.
-  const response = NextResponse.next();
-
-  // Refresh the session so it doesn't expire
-  if (session?.user) {
-    const newExpires = new Date(Date.now() + 60 * 60 * 1000); // 1 hour
-    const newSessionPayload = { ...session, expires: newExpires };
-
-    const newSession = await encrypt(newSessionPayload);
-
-    response.cookies.set('session', newSession, {
-      expires: newExpires,
-      httpOnly: true,
-    });
-  }
-
-
-  return response;
+  return NextResponse.next();
 }
 
 // Routes Middleware should not run on
@@ -55,16 +39,3 @@ export const config = {
     '/((?!api|_next/static|_next/image|.*\\.png$).*)',
   ],
 };
-
-async function encrypt(payload: any) {
-  const secretKey = process.env.JWT_SECRET;
-  if (!secretKey) {
-    throw new Error('JWT_SECRET is not defined');
-  }
-  const key = new TextEncoder().encode(secretKey);
-  return await new SignJWT(payload)
-    .setProtectedHeader({alg: 'HS256'})
-    .setIssuedAt()
-    .setExpirationTime('1h')
-    .sign(key);
-}
