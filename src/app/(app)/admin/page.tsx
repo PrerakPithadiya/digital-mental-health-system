@@ -5,12 +5,12 @@ export default function AdminPage() {
   return (
     <div>
       <PageHeader 
-        title="Admin Analytics"
-        description="View anonymized data and trends on student mental health."
+        title="Admin Dashboard"
+        description="View anonymized data analytics and trends to help plan institutional interventions."
       />
       <Card>
         <CardContent className="p-6">
-          <p className="text-muted-foreground">The admin dashboard is under development. Analytics and reporting tools will be available here.</p>
+          <p className="text-muted-foreground">The admin dashboard is under development. Analytics and reporting tools will be available here to provide insights into student mental health trends.</p>
         </CardContent>
       </Card>
     </div>

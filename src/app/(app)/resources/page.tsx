@@ -5,12 +5,12 @@ export default function ResourcesPage() {
   return (
     <div>
       <PageHeader 
-        title="Resource Library"
-        description="Explore articles, videos, and tools for your mental wellness journey."
+        title="Resource Hub"
+        description="Explore articles, videos, relaxation audios, and tools for your mental wellness journey."
       />
       <Card>
         <CardContent className="p-6">
-          <p className="text-muted-foreground">The resource library is currently under construction. Please check back soon for helpful content.</p>
+          <p className="text-muted-foreground">The resource hub is currently under construction. Please check back soon for helpful psychoeducational content, including materials in regional languages.</p>
         </CardContent>
       </Card>
     </div>

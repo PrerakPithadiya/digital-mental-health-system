@@ -5,12 +5,12 @@ export default function BookingPage() {
   return (
     <div>
       <PageHeader 
-        title="Confidential Booking"
-        description="Browse counselor profiles and schedule your appointment."
+        title="Counselor Booking"
+        description="Browse counselor profiles and schedule your confidential appointment."
       />
       <Card>
         <CardContent className="p-6">
-          <p className="text-muted-foreground">The booking system is currently under development. Please check back soon.</p>
+          <p className="text-muted-foreground">The confidential booking system is currently under development. You will soon be able to schedule appointments with college counselors here.</p>
         </CardContent>
       </Card>
     </div>

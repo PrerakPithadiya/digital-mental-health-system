@@ -22,11 +22,11 @@ import Link from 'next/link';
 
 const navItems = [
   { href: '/dashboard', icon: LayoutDashboard, label: 'Dashboard' },
-  { href: '/ai-support', icon: Bot, label: 'AI Support' },
-  { href: '/booking', icon: CalendarCheck, label: 'Booking' },
-  { href: '/resources', icon: Library, label: 'Resources' },
-  { href: '/forums', icon: MessageSquare, label: 'Forums' },
-  { href: '/admin', icon: Shield, label: 'Admin' },
+  { href: '/ai-support', icon: Bot, label: 'AI First-Aid' },
+  { href: '/booking', icon: CalendarCheck, label: 'Counselor Booking' },
+  { href: '/resources', icon: Library, label: 'Resource Hub' },
+  { href: '/forums', icon: MessageSquare, label: 'Peer Forums' },
+  { href: '/admin', icon: Shield, label: 'Admin Dashboard' },
 ];
 
 export default function AppSidebar() {
@@ -41,7 +41,7 @@ export default function AppSidebar() {
         <SidebarMenu>
           {navItems.map((item) => (
             <SidebarMenuItem key={item.href}>
-              <Link href={item.href} passHref>
+              <Link href={item.href}>
                 <SidebarMenuButton
                   isActive={pathname === item.href}
                   tooltip={item.label}

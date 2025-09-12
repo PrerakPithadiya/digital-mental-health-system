@@ -5,7 +5,6 @@ import Link from "next/link";
 import Image from "next/image";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
 
-const aiSupportImage = PlaceHolderImages.find(img => img.id === 'ai-support-avatar');
 const bookingImage = PlaceHolderImages.find(img => img.id === 'booking-card');
 const resourcesImage = PlaceHolderImages.find(img => img.id === 'resources-card');
 
@@ -18,7 +17,7 @@ export default function DashboardPage() {
             Welcome, Student
           </h1>
           <p className="mt-2 text-lg text-muted-foreground">
-            Your space for mental wellness and support.
+            Your confidential space for mental wellness and support.
           </p>
         </div>
         <Button variant="destructive" size="lg" asChild>
@@ -29,11 +28,11 @@ export default function DashboardPage() {
         </Button>
       </div>
 
-      <Card className="border-border">
+      <Card className="border-primary/20 bg-primary/5">
         <CardHeader>
-          <CardTitle className="font-headline text-2xl">AI-Guided Support</CardTitle>
+          <CardTitle className="font-headline text-2xl flex items-center gap-2"><Bot className="text-primary"/>AI-Guided First-Aid</CardTitle>
           <CardDescription>
-            Feeling overwhelmed, anxious, or just not like yourself? Start a conversation with our AI chatbot. It can help you understand what you're feeling and provide you with actionable steps to start feeling better.
+            Feeling overwhelmed, anxious, or just not like yourself? Start a conversation with our friendly AI assistant. It can help you understand what you're feeling and provide you with actionable steps to start feeling better. It's completely confidential and available 24/7.
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -61,11 +60,11 @@ export default function DashboardPage() {
           }
           <CardHeader>
             <CardTitle className="font-headline flex items-center gap-2"><CalendarCheck className="text-primary"/>Confidential Booking</CardTitle>
-            <CardDescription>Schedule a private session with a professional counselor.</CardDescription>
+            <CardDescription>Schedule a private session with a professional college counselor.</CardDescription>
           </CardHeader>
           <CardContent>
             <Button variant="secondary" asChild>
-              <Link href="/booking">View Counselors</Link>
+              <Link href="/booking">Browse Counselors</Link>
             </Button>
           </CardContent>
         </Card>
@@ -84,8 +83,8 @@ export default function DashboardPage() {
             </div>
           }
           <CardHeader>
-            <CardTitle className="font-headline flex items-center gap-2"><Library className="text-primary"/>Resource Library</CardTitle>
-            <CardDescription>Explore articles, videos, and guides on mental wellness.</CardDescription>
+            <CardTitle className="font-headline flex items-center gap-2"><Library className="text-primary"/>Resource Hub</CardTitle>
+            <CardDescription>Explore articles, videos, and guides on mental wellness topics.</CardDescription>
           </CardHeader>
           <CardContent>
             <Button variant="secondary" asChild>

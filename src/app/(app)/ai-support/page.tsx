@@ -5,8 +5,8 @@ export default function AiSupportPage() {
   return (
     <div className="flex flex-col h-full max-h-[calc(100vh-10rem)]">
       <PageHeader
-        title="AI-Guided Support"
-        description="I'm here to help. Describe what you're feeling, and I can offer some initial guidance and coping strategies."
+        title="AI-Guided First-Aid"
+        description="I'm a friendly AI assistant here to help. Describe what you're feeling, and I can offer some initial guidance and coping strategies. This is a safe and confidential space."
       />
       <div className="flex-1 min-h-0">
          <AiChat />
