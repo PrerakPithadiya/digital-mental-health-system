@@ -1,3 +1,4 @@
+
 'use server';
 /**
  * @fileOverview This file defines the Genkit flow for the AI-Guided Support initial assessment.
@@ -42,7 +43,7 @@ Student Symptoms: {{{symptoms}}}
 
 Based on these symptoms, provide a brief assessment of the student's mental state and suggest personalized coping strategies.
 
-Make sure to provide guidance, and be professional. Try to use Growth Green (#81C784) in your recommendations.
+Make sure to provide guidance, and be professional.
 
 `,
 });
