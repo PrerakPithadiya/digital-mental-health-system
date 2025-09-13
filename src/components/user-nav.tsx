@@ -11,27 +11,26 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import { User } from "@/lib/definitions";
-import { logout } from "@/app/auth/actions";
+import { User } from "lucide-react";
 
-export function UserNav({ user }: { user: User }) {
+export function UserNav() {
 
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button variant="ghost" className="relative h-8 w-8 rounded-full">
           <Avatar className="h-9 w-9">
-            <AvatarImage src="https://picsum.photos/seed/user-avatar/100/100" alt={user.username} data-ai-hint="person face" />
-            <AvatarFallback>{user.username.charAt(0).toUpperCase()}</AvatarFallback>
+            <AvatarImage src="https://picsum.photos/seed/user-avatar/100/100" alt={"Student"} data-ai-hint="person face" />
+            <AvatarFallback><User /></AvatarFallback>
           </Avatar>
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-56" align="end" forceMount>
         <DropdownMenuLabel className="font-normal">
           <div className="flex flex-col space-y-1">
-            <p className="text-sm font-medium leading-none">{user.username}</p>
+            <p className="text-sm font-medium leading-none">Student</p>
             <p className="text-xs leading-none text-muted-foreground">
-              {user.collegeName}
+              WellSpring University
             </p>
           </div>
         </DropdownMenuLabel>
@@ -45,7 +44,7 @@ export function UserNav({ user }: { user: User }) {
           </DropdownMenuItem>
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
-        <DropdownMenuItem onClick={() => logout()}>
+        <DropdownMenuItem>
           Log out
         </DropdownMenuItem>
       </DropdownMenuContent>
