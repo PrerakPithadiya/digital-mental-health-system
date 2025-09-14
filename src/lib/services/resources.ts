@@ -92,7 +92,6 @@ const initialResources: Omit<Resource, '_id'>[] = [
       category: 'Stress & Anxiety',
       subcategory: 'Support Organizations',
       title: 'Anxiety and Depression Association of America (ADAA)',
-      url_id: 'adaa-org',
       url: 'https://adaa.org',
       source: 'ADAA',
     },
@@ -164,32 +163,88 @@ const initialResources: Omit<Resource, '_id'>[] = [
   
     // Self-Care
     {
-      category: 'Self-Care',
-      subcategory: 'Articles & Guides',
-      title: 'The Importance of Sleep for Mental Health',
-      url: 'https://www.sleepfoundation.org/mental-health',
-      source: 'Sleep Foundation',
+        category: 'Self-Care',
+        subcategory: 'Physical Self-Care',
+        title: 'The Importance of Sleep for Mental Health',
+        url: 'https://www.sleepfoundation.org/mental-health',
+        source: 'Sleep Foundation',
     },
     {
-      category: 'Self-Care',
-      subcategory: 'Articles & Guides',
-      title: 'How to Build a Self-Care Plan',
-      url: 'https://www.mentalhealthfirstaid.org/2020/07/how-to-create-a-self-care-plan/',
-      source: 'Mental Health First Aid',
+        category: 'Self-Care',
+        subcategory: 'Physical Self-Care',
+        title: 'Why Exercise is So Important for Mental Health',
+        url: 'https://www.helpguide.org/articles/healthy-living/the-mental-health-benefits-of-exercise.htm',
+        source: 'HelpGuide',
     },
     {
-      category: 'Self-Care',
-      subcategory: 'Articles & Guides',
-      title: 'The Connection Between Diet and Mental Wellness',
-      url: 'https://www.mind.org.uk/information-support/tips-for-everyday-living/food-and-mood/',
-      source: 'Mind UK',
+        category: 'Self-Care',
+        subcategory: 'Emotional Self-Care',
+        title: 'Emotional Self-Care: 10 Ways to Nurture Your Inner World',
+        url: 'https://www.psychologytoday.com/us/blog/click-here-happiness/201812/emotional-self-care-10-ways-nurture-your-inner-world',
+        source: 'Psychology Today',
     },
     {
-      category: 'Self-Care',
-      subcategory: 'Tools & Challenges',
-      title: '7-Day Self-Care Challenge',
-      url: 'https://www.verywellmind.com/self-care-challenge-4845517',
-      source: 'Verywell Mind',
+        category: 'Self-Care',
+        subcategory: 'Emotional Self-Care',
+        title: 'How to Journal for Self-Improvement',
+        url: 'https://www.healthline.com/health/how-to-journal',
+        source: 'Healthline',
+    },
+    {
+        category: 'Self-Care',
+        subcategory: 'Mental & Psychological Self-Care',
+        title: 'How to Do a Digital Detox',
+        url: 'https://www.verywellmind.com/how-to-do-a-digital-detox-4691452',
+        source: 'Verywell Mind',
+    },
+    {
+        category: 'Self-Care',
+        subcategory: 'Mental & Psychological Self-Care',
+        title: 'Caring for Your Mental Health',
+        url: 'https://www.nimh.nih.gov/health/topics/caring-for-your-mental-health',
+        source: 'NIMH',
+    },
+    {
+        category: 'Self-Care',
+        subcategory: 'Social Self-Care',
+        title: 'How to Build a Social Support Network',
+        url: 'https://www.verywellmind.com/how-to-build-a-strong-social-support-network-3144865',
+        source: 'Verywell Mind',
+    },
+    {
+        category: 'Self-Care',
+        subcategory: 'Social Self-Care',
+        title: 'How to Set Healthy Boundaries',
+        url: 'https://www.healthline.com/health/mental-health/set-boundaries',
+        source: 'Healthline',
+    },
+    {
+        category: 'Self-Care',
+        subcategory: 'Spiritual Self-Care',
+        title: 'How Spending Time in Nature Benefits Your Health',
+        url: 'https://www.health.harvard.edu/blog/health-benefits-of-taking-a-walk-outside-202303212905',
+        source: 'Harvard Health',
+    },
+    {
+        category: 'Self-Care',
+        subcategory: 'Spiritual Self-Care',
+        title: 'How to Practice Gratitude',
+        url: 'https://greatergood.berkeley.edu/article/item/how_to_practice_gratitude',
+        source: 'Greater Good Science Center',
+    },
+    {
+        category: 'Self-Care',
+        subcategory: 'Practical & Professional Self-Care',
+        title: 'How to Create a Self-Care Plan',
+        url: 'https://www.mentalhealthfirstaid.org/2020/07/how-to-create-a-self-care-plan/',
+        source: 'Mental Health First Aid',
+    },
+    {
+        category: 'Self-Care',
+        subcategory: 'Practical & Professional Self-Care',
+        title: 'How to Achieve a Better Work-Life Balance',
+        url: 'https://www.forbes.com/advisor/business/work-life-balance/',
+        source: 'Forbes',
     },
   
     // Personal Stories
@@ -231,18 +286,28 @@ const initialResources: Omit<Resource, '_id'>[] = [
 ];
 
 async function getDb() {
-  const client = await clientPromise;
-  return client.db();
+  try {
+    const client = await clientPromise;
+    return client.db();
+  } catch (e) {
+    console.warn('Could not connect to the database. Database features will be unavailable.');
+    return null;
+  }
 }
 
 export async function getResourcesCollection() {
     const db = await getDb();
+    if (!db) return null;
     return db.collection<Resource>('resources');
 }
 
 export async function seedResources() {
     try {
         const collection = await getResourcesCollection();
+        if (!collection) {
+            console.warn('Database not available. Skipping seeding.');
+            return;
+        }
         const count = await collection.countDocuments();
         if (count === 0) {
             console.log('Seeding resources collection...');
@@ -250,14 +315,17 @@ export async function seedResources() {
             console.log('Seeding complete.');
         }
     } catch (e) {
-        console.warn('Could not connect to the database. Skipping seeding.');
+        console.error('Error seeding resources:', e);
     }
 }
 
 export async function getResources(): Promise<Resource[]> {
     try {
         const collection = await getResourcesCollection();
-        // The `_id` is a BSON object from MongoDB, we need to convert it to a string
+        if (!collection) {
+            console.warn('Could not connect to the database. Returning initial hardcoded resources.');
+            return initialResources.map(r => ({ ...r, _id: new ObjectId() })) as Resource[];
+        }
         const resources = await collection.find({}).toArray();
         return resources.map(r => ({ ...r, _id: r._id.toString() })) as unknown as Resource[];
     } catch (e) {

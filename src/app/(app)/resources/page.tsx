@@ -16,6 +16,11 @@ import {
   Quote,
   Sparkles,
   Users,
+  HeartPulse,
+  Scale,
+  Briefcase,
+  Smile,
+  Leaf
 } from 'lucide-react';
 import Link from 'next/link';
 import PageHeader from '@/components/page-header';
@@ -116,7 +121,7 @@ export default async function ResourcesPage() {
                     </AccordionTrigger>
                     <AccordionContent className="pt-2 space-y-2">
                       {stressResources['Articles & Guides']?.map((item) => (
-                        <ResourceLink key={item.url} {...item} />
+                        <ResourceLink key={item._id?.toString()} {...item} />
                       ))}
                     </AccordionContent>
                   </AccordionItem>
@@ -126,7 +131,7 @@ export default async function ResourcesPage() {
                     </AccordionTrigger>
                     <AccordionContent className="pt-2 space-y-2">
                       {stressResources['Tools & Apps']?.map((item) => (
-                        <ResourceLink key={item.url} {...item} />
+                        <ResourceLink key={item._id?.toString()} {...item} />
                       ))}
                     </AccordionContent>
                   </AccordionItem>
@@ -136,7 +141,7 @@ export default async function ResourcesPage() {
                     </AccordionTrigger>
                     <AccordionContent className="pt-2 space-y-2">
                       {stressResources['Support Organizations']?.map((item) => (
-                        <ResourceLink key={item.url} {...item} />
+                        <ResourceLink key={item._id?.toString()} {...item} />
                       ))}
                     </AccordionContent>
                   </AccordionItem>
@@ -151,7 +156,7 @@ export default async function ResourcesPage() {
                     </AccordionTrigger>
                     <AccordionContent className="pt-2 space-y-2">
                       {mindfulnessResources['Articles & Guides']?.map((item) => (
-                        <ResourceLink key={item.url} {...item} />
+                        <ResourceLink key={item._id?.toString()} {...item} />
                       ))}
                     </AccordionContent>
                   </AccordionItem>
@@ -161,7 +166,7 @@ export default async function ResourcesPage() {
                     </AccordionTrigger>
                     <AccordionContent className="pt-2 space-y-2">
                       {mindfulnessResources['Apps & Tools']?.map((item) => (
-                        <ResourceLink key={item.url} {...item} />
+                        <ResourceLink key={item._id?.toString()} {...item} />
                       ))}
                     </AccordionContent>
                   </AccordionItem>
@@ -172,21 +177,61 @@ export default async function ResourcesPage() {
               <Accordion type="single" collapsible defaultValue="item-1">
                   <AccordionItem value="item-1">
                     <AccordionTrigger className="text-lg font-semibold">
-                      <BookOpen className="mr-2 text-primary" /> Articles & Guides
+                      <HeartPulse className="mr-2 text-primary" /> Physical Self-Care
                     </AccordionTrigger>
                     <AccordionContent className="pt-2 space-y-2">
-                      {selfCareResources['Articles & Guides']?.map((item) => (
-                        <ResourceLink key={item.url} {...item} />
+                      {selfCareResources['Physical Self-Care']?.map((item) => (
+                        <ResourceLink key={item._id?.toString()} {...item} />
                       ))}
                     </AccordionContent>
                   </AccordionItem>
-                  <AccordionItem value="item-2" className='border-b-0'>
+                  <AccordionItem value="item-2">
                     <AccordionTrigger className="text-lg font-semibold">
-                      <Sparkles className="mr-2 text-primary" /> Tools & Challenges
+                      <Smile className="mr-2 text-primary" /> Emotional Self-Care
                     </AccordionTrigger>
                     <AccordionContent className="pt-2 space-y-2">
-                      {selfCareResources['Tools & Challenges']?.map((item) => (
-                        <ResourceLink key={item.url} {...item} />
+                      {selfCareResources['Emotional Self-Care']?.map((item) => (
+                        <ResourceLink key={item._id?.toString()} {...item} />
+                      ))}
+                    </AccordionContent>
+                  </AccordionItem>
+                   <AccordionItem value="item-3">
+                    <AccordionTrigger className="text-lg font-semibold">
+                      <BrainCircuit className="mr-2 text-primary" /> Mental & Psychological Self-Care
+                    </AccordionTrigger>
+                    <AccordionContent className="pt-2 space-y-2">
+                      {selfCareResources['Mental & Psychological Self-Care']?.map((item) => (
+                        <ResourceLink key={item._id?.toString()} {...item} />
+                      ))}
+                    </AccordionContent>
+                  </AccordionItem>
+                  <AccordionItem value="item-4">
+                    <AccordionTrigger className="text-lg font-semibold">
+                      <Users className="mr-2 text-primary" /> Social Self-Care
+                    </AccordionTrigger>
+                    <AccordionContent className="pt-2 space-y-2">
+                      {selfCareResources['Social Self-Care']?.map((item) => (
+                        <ResourceLink key={item._id?.toString()} {...item} />
+                      ))}
+                    </AccordionContent>
+                  </AccordionItem>
+                  <AccordionItem value="item-5">
+                    <AccordionTrigger className="text-lg font-semibold">
+                      <Leaf className="mr-2 text-primary" /> Spiritual Self-Care
+                    </AccordionTrigger>
+                    <AccordionContent className="pt-2 space-y-2">
+                      {selfCareResources['Spiritual Self-Care']?.map((item) => (
+                        <ResourceLink key={item._id?.toString()} {...item} />
+                      ))}
+                    </AccordionContent>
+                  </AccordionItem>
+                  <AccordionItem value="item-6" className="border-b-0">
+                    <AccordionTrigger className="text-lg font-semibold">
+                      <Briefcase className="mr-2 text-primary" /> Practical & Professional Self-Care
+                    </AccordionTrigger>
+                    <AccordionContent className="pt-2 space-y-2">
+                      {selfCareResources['Practical & Professional Self-Care']?.map((item) => (
+                        <ResourceLink key={item._id?.toString()} {...item} />
                       ))}
                     </AccordionContent>
                   </AccordionItem>
@@ -201,7 +246,7 @@ export default async function ResourcesPage() {
                     </AccordionTrigger>
                     <AccordionContent className="pt-2 space-y-2">
                       {storiesResources['Testimonials']?.map((item) => (
-                        <ResourceLink key={item.url} {...item} />
+                        <ResourceLink key={item._id?.toString()} {...item} />
                       ))}
                     </AccordionContent>
                   </AccordionItem>
