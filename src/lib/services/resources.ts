@@ -1,5 +1,6 @@
 import clientPromise from '@/lib/mongodb';
 import type { Resource } from '@/lib/models/resource';
+import { ObjectId } from 'mongodb';
 
 const initialResources: Omit<Resource, '_id'>[] = [
     // Stress & Anxiety
@@ -91,6 +92,7 @@ const initialResources: Omit<Resource, '_id'>[] = [
       category: 'Stress & Anxiety',
       subcategory: 'Support Organizations',
       title: 'Anxiety and Depression Association of America (ADAA)',
+      url_id: 'adaa-org',
       url: 'https://adaa.org',
       source: 'ADAA',
     },
@@ -260,6 +262,6 @@ export async function getResources(): Promise<Resource[]> {
         return resources.map(r => ({ ...r, _id: r._id.toString() })) as unknown as Resource[];
     } catch (e) {
          console.warn('Could not connect to the database. Returning initial hardcoded resources.');
-         return initialResources as Resource[];
+         return initialResources.map(r => ({ ...r, _id: new ObjectId() })) as Resource[];
     }
 }
