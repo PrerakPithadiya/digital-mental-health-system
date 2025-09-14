@@ -1,12 +1,11 @@
 'use server';
 
-import { diagnoseMentalState } from '@/ai/flows/ai-guided-support-initial-assessment';
+import { diagnoseMentalState, DiagnoseMentalStateOutput } from '@/ai/flows/ai-guided-support-initial-assessment';
 
 export async function getAiAssessment(symptoms: string): Promise<{
   success: boolean;
   message: string;
-  assessment?: string;
-  copingStrategies?: string;
+  data?: DiagnoseMentalStateOutput;
 }> {
   if (!symptoms) {
     return { success: false, message: 'Please describe your symptoms to get an assessment.' };
@@ -18,8 +17,7 @@ export async function getAiAssessment(symptoms: string): Promise<{
         return {
           success: true,
           message: 'Assessment successful.',
-          assessment: result.assessment.mentalState,
-          copingStrategies: result.assessment.copingStrategies
+          data: result,
         };
     }
     return { success: false, message: 'I received a response, but it was not in the expected format. Please try rephrasing your concerns.' };

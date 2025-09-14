@@ -38,8 +38,9 @@ export default function AiChat() {
     try {
       const result = await getAiAssessment(input);
       let aiContent = '';
-      if (result.success) {
-        aiContent = `${result.assessment}\n\n${result.copingStrategies}`;
+      if (result.success && result.data?.assessment) {
+        const { mentalState, copingStrategies, followUpQuestion } = result.data.assessment;
+        aiContent = `${mentalState}\n\n${followUpQuestion}\n\nHere are a few things you can try:\n${copingStrategies}`;
       } else {
         aiContent = result.message;
       }
