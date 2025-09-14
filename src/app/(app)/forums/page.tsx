@@ -7,7 +7,18 @@ import { Card, CardContent, CardHeader, CardFooter } from '@/components/ui/card'
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { MessageSquare, Heart, Bookmark, Send, User } from 'lucide-react';
+import { MessageSquare, Heart, Bookmark, Send, User, Trash2 } from 'lucide-react';
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from '@/components/ui/alert-dialog';
 
 type Post = {
   id: number;
@@ -17,6 +28,7 @@ type Post = {
   content: string;
   likes: number;
   comments: number;
+  isOwn?: boolean;
 };
 
 const initialPosts: Post[] = [
@@ -62,19 +74,24 @@ export default function ForumsPage() {
     // Simulate API call
     setTimeout(() => {
       const newPost: Post = {
-        id: posts.length + 1,
-        author: 'Anonymous Student',
-        avatar: `https://picsum.photos/seed/forum-user-${posts.length + 1}/40/40`,
+        id: Date.now(), // Use a more unique ID
+        author: 'You (Anonymous)',
+        avatar: `https://picsum.photos/seed/user-avatar/40/40`,
         timestamp: 'Just now',
         content: newPostContent,
         likes: 0,
         comments: 0,
+        isOwn: true,
       };
       setPosts([newPost, ...posts]);
       setNewPostContent('');
       setIsSubmitting(false);
     }, 500);
   };
+  
+  const handleDeletePost = (postId: number) => {
+    setPosts(posts.filter(p => p.id !== postId));
+  }
 
   return (
     <div className="max-w-4xl mx-auto">
@@ -142,10 +159,36 @@ export default function ForumsPage() {
                   <span>{post.likes} Likes</span>
                 </button>
               </div>
-              <button className="flex items-center gap-2 hover:text-primary transition-colors">
-                <Bookmark className="h-5 w-5" />
-                <span>Save</span>
-              </button>
+              <div className="flex items-center gap-2">
+                 <button className="flex items-center gap-2 hover:text-primary transition-colors">
+                    <Bookmark className="h-5 w-5" />
+                    <span>Save</span>
+                </button>
+                {post.isOwn && (
+                   <AlertDialog>
+                    <AlertDialogTrigger asChild>
+                      <button className="flex items-center gap-2 hover:text-destructive transition-colors">
+                        <Trash2 className="h-5 w-5" />
+                        <span>Delete</span>
+                      </button>
+                    </AlertDialogTrigger>
+                    <AlertDialogContent>
+                      <AlertDialogHeader>
+                        <AlertDialogTitle>Are you sure?</AlertDialogTitle>
+                        <AlertDialogDescription>
+                          This action cannot be undone. This will permanently delete your post.
+                        </AlertDialogDescription>
+                      </AlertDialogHeader>
+                      <AlertDialogFooter>
+                        <AlertDialogCancel>Cancel</AlertDialogCancel>
+                        <AlertDialogAction onClick={() => handleDeletePost(post.id)}>
+                          Delete
+                        </AlertDialogAction>
+                      </AlertDialogFooter>
+                    </AlertDialogContent>
+                  </AlertDialog>
+                )}
+              </div>
             </CardFooter>
           </Card>
         ))}
