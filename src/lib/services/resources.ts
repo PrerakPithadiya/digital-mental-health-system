@@ -279,10 +279,38 @@ const initialResources: Omit<Resource, '_id'>[] = [
     {
       category: 'Personal Stories',
       subcategory: 'Testimonials',
-      title: 'Overcoming anxiety: Three powerful stories',
-      url: 'https://www.aia.com/en/health-wellness/healthy-living/healthy-mind/Overcoming-anxiety',
-      source: 'AIA',
+      title: 'Living with Bipolar 1 Disorder (BP1D)',
+      url: 'https://adaa.org/living-with-anxiety/personal-stories/diagnosed-38-living-bipolar-1-disorder-bp1d',
+      source: 'ADAA',
     },
+     {
+      category: 'Personal Stories',
+      subcategory: 'Testimonials',
+      title: 'Shame, Storytelling & My Journey Living with OCD',
+      url: 'https://adaa.org/living-with-anxiety/personal-stories/shame-storytelling-my-journey-living-ocd',
+      source: 'ADAA',
+    },
+     {
+      category: 'Personal Stories',
+      subcategory: 'Testimonials',
+      title: 'Surviving and Thriving - Turning Trauma into Fuel',
+      url: 'https://adaa.org/living-with-anxiety/personal-stories/surviving-thriving-turning-trauma-fuel',
+      source: 'ADAA',
+    },
+     {
+      category: 'Personal Stories',
+      subcategory: 'Testimonials',
+      title: 'Living Beyond Anxiety',
+      url: 'https://adaa.org/living-with-anxiety/personal-stories/living-beyond-anxiety',
+      source: 'ADAA',
+    },
+    {
+      category: 'Personal Stories',
+      subcategory: 'Testimonials',
+      title: 'The Silence Within',
+      url: 'https://adaa.org/living-with-anxiety/personal-stories/the-silence-within',
+      source: 'ADAA',
+    }
 ];
 
 async function getDb() {

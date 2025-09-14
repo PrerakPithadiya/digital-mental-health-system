@@ -256,18 +256,31 @@ export default async function ResourcesPage() {
             </TabsContent>
 
             <TabsContent value="stories">
-                <Accordion type="single" collapsible defaultValue="item-1">
-                  <AccordionItem value="item-1" className='border-b-0'>
-                    <AccordionTrigger className="text-lg font-semibold">
-                      <Quote className="mr-2 text-primary" /> Personal Stories & Testimonials
-                    </AccordionTrigger>
-                    <AccordionContent className="pt-2 space-y-2">
-                      {storiesResources['Testimonials']?.map((item) => (
-                        <ResourceLink key={item._id?.toString()} {...item} />
-                      ))}
-                    </AccordionContent>
-                  </AccordionItem>
-                </Accordion>
+              <div className="prose prose-stone max-w-none dark:prose-invert mb-6">
+                  <h2 className="font-headline text-2xl">Personal Stories: Real Journeys, Real Hope</h2>
+                  <p>
+                    Personal stories have the power to heal, inspire, and connect us all. In this section, you will find authentic accounts from individuals who have faced challenges related to stress, anxiety, and mental health, and who have found ways to overcome them. Their journeys provide encouragement and demonstrate that recovery is possible.
+                  </p>
+                  <ul className="list-disc pl-5">
+                      <li>They reduce stigma by sharing honest experiences.</li>
+                      <li>They offer hope and inspiration for those struggling.</li>
+                      <li>They build community through shared understanding.</li>
+                      <li>They provide practical insights and coping strategies.</li>
+                  </ul>
+                  <h3 className="font-headline text-xl">Featured Resources and Collections</h3>
+              </div>
+              <Accordion type="single" collapsible defaultValue="item-1">
+                <AccordionItem value="item-1" className='border-b-0'>
+                  <AccordionTrigger className="text-lg font-semibold">
+                    <Quote className="mr-2 text-primary" /> Personal Stories & Testimonials
+                  </AccordionTrigger>
+                  <AccordionContent className="pt-2 space-y-2">
+                    {storiesResources['Testimonials']?.map((item) => (
+                      <ResourceLink key={item._id?.toString()} {...item} />
+                    ))}
+                  </AccordionContent>
+                </AccordionItem>
+              </Accordion>
             </TabsContent>
 
           </CardContent>
