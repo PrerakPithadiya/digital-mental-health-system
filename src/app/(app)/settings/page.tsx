@@ -1,6 +1,7 @@
 
 'use client';
 
+import { useState } from 'react';
 import PageHeader from '@/components/page-header';
 import { Button } from '@/components/ui/button';
 import {
@@ -25,7 +26,6 @@ import { useToast } from '@/hooks/use-toast';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
-import { Separator } from '@/components/ui/separator';
 import { Input } from '@/components/ui/input';
 import {
   AlertDialog,
@@ -38,6 +38,7 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from '@/components/ui/alert-dialog';
+import { Eye, EyeOff } from 'lucide-react';
 
 const notificationsFormSchema = z.object({
   appointmentReminders: z.boolean().default(false).optional(),
@@ -56,6 +57,8 @@ type AccountFormValues = z.infer<typeof accountFormSchema>;
 
 export default function SettingsPage() {
   const { toast } = useToast();
+  const [showCurrentPassword, setShowCurrentPassword] = useState(false);
+  const [showNewPassword, setShowNewPassword] = useState(false);
 
   const notificationsForm = useForm<NotificationsFormValues>({
     resolver: zodResolver(notificationsFormSchema),
@@ -205,9 +208,21 @@ export default function SettingsPage() {
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel>Current Password</FormLabel>
-                      <FormControl>
-                        <Input type="password" placeholder="••••••••" {...field} />
-                      </FormControl>
+                      <div className="relative">
+                        <FormControl>
+                          <Input type={showCurrentPassword ? 'text' : 'password'} placeholder="••••••••" {...field} />
+                        </FormControl>
+                        <Button 
+                          type="button" 
+                          variant="ghost" 
+                          size="icon" 
+                          className="absolute right-1 top-1/2 -translate-y-1/2 h-7 w-7"
+                          onClick={() => setShowCurrentPassword(prev => !prev)}
+                        >
+                          {showCurrentPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+                          <span className="sr-only">{showCurrentPassword ? 'Hide password' : 'Show password'}</span>
+                        </Button>
+                      </div>
                       <FormMessage />
                     </FormItem>
                   )}
@@ -218,9 +233,21 @@ export default function SettingsPage() {
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel>New Password</FormLabel>
-                      <FormControl>
-                        <Input type="password" placeholder="••••••••" {...field} />
-                      </FormControl>
+                      <div className="relative">
+                        <FormControl>
+                          <Input type={showNewPassword ? 'text' : 'password'} placeholder="••••••••" {...field} />
+                        </FormControl>
+                        <Button 
+                          type="button" 
+                          variant="ghost" 
+                          size="icon" 
+                          className="absolute right-1 top-1/2 -translate-y-1/2 h-7 w-7"
+                          onClick={() => setShowNewPassword(prev => !prev)}
+                        >
+                          {showNewPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+                           <span className="sr-only">{showNewPassword ? 'Hide password' : 'Show password'}</span>
+                        </Button>
+                      </div>
                        <FormDescription>
                         Password must be at least 8 characters long.
                       </FormDescription>
