@@ -42,7 +42,7 @@ export default function AiChat() {
       let aiContent: React.ReactNode = result.message;
 
       if (result.success && result.data?.responseMarkdown) {
-        aiContent = <ReactMarkdown className="prose prose-sm max-w-full">{result.data.responseMarkdown}</ReactMarkdown>;
+        aiContent = <ReactMarkdown className="prose prose-sm max-w-full dark:prose-invert">{result.data.responseMarkdown}</ReactMarkdown>;
       } 
       const assistantMessage: Message = { role: 'assistant', content: aiContent };
       setMessages((prev) => [...prev, assistantMessage]);
