@@ -5,7 +5,7 @@ import {
   AccordionTrigger,
 } from '@/components/ui/accordion';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import {
   AlertCircle,
@@ -13,6 +13,7 @@ import {
   BrainCircuit,
   ExternalLink,
   HeartHandshake,
+  Quote,
   Sparkles,
   Users,
 } from 'lucide-react';
@@ -186,6 +187,35 @@ const resources = {
       },
     ],
   },
+  stories: {
+    testimonials: [
+        {
+          title: 'Browse Personal Stories from ADAA',
+          url: 'https://adaa.org/living-with-anxiety/personal-stories/all-stories',
+          source: 'Anxiety and Depression Association of America',
+        },
+        {
+          title: 'Mental Health Stories to Inspire You',
+          url: 'https://www.beyondblue.org.au/mental-health/personal-stories',
+          source: 'Beyond Blue (Australia)',
+        },
+        {
+          title: 'NAMI: Personal Stories Blog',
+          url: 'https://www.nami.org/blogs/personal-stories/',
+          source: 'National Alliance on Mental Illness',
+        },
+        {
+          title: 'Stories of Lived Experience',
+          url: 'https://www.blackdoginstitute.org.au/resources-support/personal-stories/',
+          source: 'Black Dog Institute',
+        },
+         {
+          title: 'Overcoming anxiety: Three powerful stories',
+          url: 'https://www.aia.com/en/health-wellness/healthy-living/healthy-mind/Overcoming-anxiety',
+          source: 'AIA',
+        },
+    ],
+  },
 };
 
 const ResourceLink = ({
@@ -243,8 +273,8 @@ export default function ResourcesPage() {
           <TabsTrigger value="self-care" className="py-2">
             <HeartHandshake className="mr-2" /> Self-Care
           </TabsTrigger>
-          <TabsTrigger value="professional-help" className="py-2">
-            <Users className="mr-2" /> Professional Help
+          <TabsTrigger value="stories" className="py-2">
+            <Quote className="mr-2" /> Personal Stories
           </TabsTrigger>
         </TabsList>
 
@@ -353,6 +383,21 @@ export default function ResourcesPage() {
                     </AccordionTrigger>
                     <AccordionContent className="pt-2 space-y-2">
                       {resources.professionalHelp.organizations.map((item) => (
+                        <ResourceLink key={item.url} {...item} />
+                      ))}
+                    </AccordionContent>
+                  </AccordionItem>
+                </Accordion>
+            </TabsContent>
+            
+            <TabsContent value="stories">
+                <Accordion type="single" collapsible defaultValue="item-1">
+                  <AccordionItem value="item-1" className='border-b-0'>
+                    <AccordionTrigger className="text-lg font-semibold">
+                      <Quote className="mr-2 text-primary" /> Personal Stories & Testimonials
+                    </AccordionTrigger>
+                    <AccordionContent className="pt-2 space-y-2">
+                      {resources.stories.testimonials.map((item) => (
                         <ResourceLink key={item.url} {...item} />
                       ))}
                     </AccordionContent>
