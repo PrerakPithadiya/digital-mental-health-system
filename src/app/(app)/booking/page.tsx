@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
 import { User } from "lucide-react";
+import Link from "next/link";
 
 const mockCounselors = [
   {
@@ -62,8 +63,10 @@ export default function BookingPage() {
               </CardHeader>
               <CardContent className="flex-1 flex flex-col justify-between text-center">
                 <p className="text-muted-foreground mb-6">{counselor.description}</p>
-                <Button className="w-full">
-                  Book an Appointment
+                <Button className="w-full" asChild>
+                  <Link href={`/booking/${counselor.id}`}>
+                    Book an Appointment
+                  </Link>
                 </Button>
               </CardContent>
             </Card>
