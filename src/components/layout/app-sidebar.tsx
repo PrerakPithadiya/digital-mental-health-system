@@ -81,26 +81,26 @@ export default function AppSidebar() {
                     <CollapsibleContent asChild>
                         <SidebarMenuSub>
                         <SidebarMenuSubItem>
-                            <Link href='/forums'>
-                            <SidebarMenuSubButton isActive={pathname === '/forums'}>
-                                <span>All Posts</span>
-                            </SidebarMenuSubButton>
+                            <Link href='/forums' passHref legacyBehavior>
+                              <SidebarMenuSubButton isActive={pathname === '/forums'}>
+                                  <span>All Posts</span>
+                              </SidebarMenuSubButton>
                             </Link>
                         </SidebarMenuSubItem>
                         <SidebarMenuSubItem>
-                            <Link href='/forums/saved'>
-                            <SidebarMenuSubButton isActive={pathname === '/forums/saved'}>
-                                <Bookmark />
-                                <span>Saved Posts</span>
-                            </SidebarMenuSubButton>
+                            <Link href='/forums/saved' passHref legacyBehavior>
+                              <SidebarMenuSubButton isActive={pathname === '/forums/saved'}>
+                                  <Bookmark />
+                                  <span>Saved Posts</span>
+                              </SidebarMenuSubButton>
                             </Link>
                         </SidebarMenuSubItem>
                         <SidebarMenuSubItem>
-                            <Link href='/forums/liked'>
-                            <SidebarMenuSubButton isActive={pathname === '/forums/liked'}>
-                                <Heart />
-                                <span>Liked Posts</span>
-                            </SidebarMenuSubButton>
+                            <Link href='/forums/liked' passHref legacyBehavior>
+                              <SidebarMenuSubButton isActive={pathname === '/forums/liked'}>
+                                  <Heart />
+                                  <span>Liked Posts</span>
+                              </SidebarMenuSubButton>
                             </Link>
                         </SidebarMenuSubItem>
                         </SidebarMenuSub>
