@@ -95,6 +95,14 @@ export default function AppSidebar() {
                             </SidebarMenuSubButton>
                             </Link>
                         </SidebarMenuSubItem>
+                        <SidebarMenuSubItem>
+                            <Link href='/forums/liked'>
+                            <SidebarMenuSubButton isActive={pathname === '/forums/liked'}>
+                                <Heart />
+                                <span>Liked Posts</span>
+                            </SidebarMenuSubButton>
+                            </Link>
+                        </SidebarMenuSubItem>
                         </SidebarMenuSub>
                     </CollapsibleContent>
                 </SidebarMenuItem>

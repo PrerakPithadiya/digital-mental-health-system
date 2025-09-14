@@ -20,6 +20,7 @@ import {
   AlertDialogTrigger,
 } from '@/components/ui/alert-dialog';
 import Link from 'next/link';
+import { cn } from '@/lib/utils';
 
 type Post = {
   id: number;
@@ -31,6 +32,7 @@ type Post = {
   comments: number;
   isOwn?: boolean;
   saved?: boolean;
+  liked?: boolean;
 };
 
 const initialPosts: Post[] = [
@@ -95,6 +97,27 @@ export default function ForumsPage() {
     setPosts(posts.filter(p => p.id !== postId));
   }
 
+  const toggleLike = (postId: number) => {
+    setPosts(posts.map(p => {
+      if (p.id === postId) {
+        const liked = !p.liked;
+        const likes = liked ? p.likes + 1 : p.likes - 1;
+        return { ...p, liked, likes };
+      }
+      return p;
+    }));
+  }
+
+  const toggleSave = (postId: number) => {
+    setPosts(posts.map(p => {
+      if (p.id === postId) {
+        return { ...p, saved: !p.saved };
+      }
+      return p;
+    }));
+  }
+
+
   return (
     <div className="max-w-4xl mx-auto">
       <PageHeader
@@ -156,18 +179,24 @@ export default function ForumsPage() {
                   <MessageSquare className="h-5 w-5" />
                   <span>{post.comments} Comments</span>
                 </Link>
-                <button className="flex items-center gap-2 hover:text-pink-500 transition-colors">
-                  <Heart className="h-5 w-5" />
+                <button 
+                  onClick={() => toggleLike(post.id)}
+                  className={cn("flex items-center gap-2 transition-colors", 
+                    post.liked ? 'text-pink-500' : 'hover:text-pink-500'
+                  )}>
+                  <Heart className={cn("h-5 w-5", post.liked && "fill-current")} />
                   <span>{post.likes} Likes</span>
                 </button>
               </div>
               <div className="flex items-center gap-2">
-                 <Button asChild variant="ghost" className="flex items-center gap-2 hover:text-primary transition-colors">
-                    <Link href="/forums/saved">
-                      <Bookmark className="h-5 w-5" />
-                      <span>Save</span>
-                    </Link>
-                </Button>
+                 <button 
+                  onClick={() => toggleSave(post.id)}
+                  className={cn("flex items-center gap-2 transition-colors",
+                    post.saved ? 'text-primary' : 'hover:text-primary'
+                  )}>
+                      <Bookmark className={cn("h-5 w-5", post.saved && "fill-current")} />
+                      <span>{post.saved ? 'Saved' : 'Save'}</span>
+                </button>
                 {post.isOwn && (
                    <AlertDialog>
                     <AlertDialogTrigger asChild>
