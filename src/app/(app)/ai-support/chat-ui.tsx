@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, FormEvent } from 'react';
 import { Bot, Send, User, Loader2 } from 'lucide-react';
 import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card';
 import { Textarea } from '@/components/ui/textarea';
@@ -9,6 +9,7 @@ import { getAiAssessment } from './actions';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import ReactMarkdown from 'react-markdown';
+import { cn } from '@/lib/utils';
 
 type Message = {
   role: 'user' | 'assistant';
@@ -23,12 +24,14 @@ export default function AiChat() {
 
   useEffect(() => {
     if (scrollAreaRef.current) {
-      const scrollHeight = scrollAreaRef.current.scrollHeight;
-      scrollAreaRef.current.scrollTo({ top: scrollHeight, behavior: 'smooth' });
+      const scrollViewport = scrollAreaRef.current.querySelector('div');
+      if (scrollViewport) {
+        scrollViewport.scrollTo({ top: scrollViewport.scrollHeight, behavior: 'smooth' });
+      }
     }
   }, [messages]);
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     if (!input.trim() || isLoading) return;
 
@@ -62,14 +65,14 @@ export default function AiChat() {
       <CardHeader className='hidden'>
       </CardHeader>
       <CardContent className="flex-1 p-0 overflow-hidden">
-        <ScrollArea className="h-full p-4" ref={scrollAreaRef}>
-          <div className="flex flex-col gap-4">
+        <ScrollArea className="h-full" ref={scrollAreaRef}>
+          <div className="flex flex-col gap-4 p-4">
             {messages.map((message, index) => (
               <div
                 key={index}
-                className={`flex items-start gap-3 ${
+                className={cn('flex items-start gap-3',
                   message.role === 'user' ? 'justify-end' : ''
-                }`}
+                )}
               >
                 {message.role === 'assistant' && (
                   <Avatar>
@@ -79,13 +82,14 @@ export default function AiChat() {
                   </Avatar>
                 )}
                 <div
-                  className={`max-w-md rounded-lg p-3 ${
+                  className={cn(
+                    'max-w-xl rounded-lg p-3',
                     message.role === 'user'
                       ? 'bg-primary text-primary-foreground'
                       : 'bg-muted'
-                  }`}
+                  )}
                 >
-                  <div className="whitespace-pre-wrap">{message.content}</div>
+                  <div>{message.content}</div>
                 </div>
                 {message.role === 'user' && (
                   <Avatar>
