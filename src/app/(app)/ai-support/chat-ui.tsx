@@ -1,13 +1,14 @@
 'use client';
 
-import { useState, useRef, useEffect, Fragment } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { Bot, Send, User, Loader2 } from 'lucide-react';
 import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card';
 import { Textarea } from '@/components/ui/textarea';
 import { Button } from '@/components/ui/button';
 import { getAiAssessment } from './actions';
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import { ScrollArea } from '@/components/ui/scroll-area';
+import ReactMarkdown from 'react-markdown';
 
 type Message = {
   role: 'user' | 'assistant';
@@ -40,26 +41,8 @@ export default function AiChat() {
       const result = await getAiAssessment(input);
       let aiContent: React.ReactNode = result.message;
 
-      if (result.success && result.data?.assessment) {
-        const { mentalState, copingStrategies, followUpQuestion } = result.data.assessment;
-        
-        aiContent = (
-          <div className="space-y-4">
-            <p>{mentalState}</p>
-            {followUpQuestion && <p>{followUpQuestion}</p>}
-            {copingStrategies && copingStrategies.length > 0 && (
-              <div>
-                <p className="mb-2">Here are a few things you can try:</p>
-                <ol className="list-decimal list-outside space-y-2 pl-5">
-                  {copingStrategies.map((strategy, index) => (
-                    <li key={index}>{strategy}</li>
-                  ))}
-                </ol>
-              </div>
-            )}
-          </div>
-        );
-
+      if (result.success && result.data?.responseMarkdown) {
+        aiContent = <ReactMarkdown className="prose prose-sm max-w-full">{result.data.responseMarkdown}</ReactMarkdown>;
       } 
       const assistantMessage: Message = { role: 'assistant', content: aiContent };
       setMessages((prev) => [...prev, assistantMessage]);

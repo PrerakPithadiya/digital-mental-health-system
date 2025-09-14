@@ -13,7 +13,7 @@ export async function getAiAssessment(symptoms: string): Promise<{
 
   try {
     const result = await diagnoseMentalState({ symptoms });
-    if (result.assessment) {
+    if (result.responseMarkdown) {
         return {
           success: true,
           message: 'Assessment successful.',
