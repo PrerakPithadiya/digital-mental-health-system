@@ -264,7 +264,7 @@ export default function ResourcesPage() {
                   </AccordionItem>
                   <AccordionItem value="item-2">
                     <AccordionTrigger className="text-lg font-semibold">
-                      <Sparkles className="mr-2 text-primary" /> Tools & Exercises
+                      <Sparkles className="mr-2 text-primary" /> Tools & Apps
                     </AccordionTrigger>
                     <AccordionContent className="pt-2 space-y-2">
                       {resources.stress.tools.map((item) => (
@@ -274,7 +274,7 @@ export default function ResourcesPage() {
                   </AccordionItem>
                    <AccordionItem value="item-3" className='border-b-0'>
                     <AccordionTrigger className="text-lg font-semibold">
-                      <Users className="mr-2 text-primary" /> Organizations
+                      <Users className="mr-2 text-primary" /> Support Organizations
                     </AccordionTrigger>
                     <AccordionContent className="pt-2 space-y-2">
                       {resources.stress.organizations.map((item) => (
