@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, Fragment } from 'react';
 import { Bot, Send, User, Loader2 } from 'lucide-react';
 import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card';
 import { Textarea } from '@/components/ui/textarea';
@@ -11,7 +11,7 @@ import { ScrollArea } from '@/components/ui/scroll-area';
 
 type Message = {
   role: 'user' | 'assistant';
-  content: string;
+  content: React.ReactNode;
 };
 
 export default function AiChat() {
@@ -22,7 +22,8 @@ export default function AiChat() {
 
   useEffect(() => {
     if (scrollAreaRef.current) {
-      scrollAreaRef.current.scrollTo({ top: scrollAreaRef.current.scrollHeight, behavior: 'smooth' });
+      const scrollHeight = scrollAreaRef.current.scrollHeight;
+      scrollAreaRef.current.scrollTo({ top: scrollHeight, behavior: 'smooth' });
     }
   }, [messages]);
 
@@ -37,13 +38,29 @@ export default function AiChat() {
 
     try {
       const result = await getAiAssessment(input);
-      let aiContent = '';
+      let aiContent: React.ReactNode = result.message;
+
       if (result.success && result.data?.assessment) {
         const { mentalState, copingStrategies, followUpQuestion } = result.data.assessment;
-        aiContent = `${mentalState}\n\n${followUpQuestion}\n\nHere are a few things you can try:\n${copingStrategies}`;
-      } else {
-        aiContent = result.message;
-      }
+        
+        aiContent = (
+          <div className="space-y-4">
+            <p>{mentalState}</p>
+            {followUpQuestion && <p>{followUpQuestion}</p>}
+            {copingStrategies && copingStrategies.length > 0 && (
+              <div>
+                <p className="mb-2">Here are a few things you can try:</p>
+                <ol className="list-decimal list-outside space-y-2 pl-5">
+                  {copingStrategies.map((strategy, index) => (
+                    <li key={index}>{strategy}</li>
+                  ))}
+                </ol>
+              </div>
+            )}
+          </div>
+        );
+
+      } 
       const assistantMessage: Message = { role: 'assistant', content: aiContent };
       setMessages((prev) => [...prev, assistantMessage]);
     } catch (error) {
@@ -61,7 +78,7 @@ export default function AiChat() {
     <Card className="flex flex-col h-full w-full max-w-3xl mx-auto shadow-lg">
       <CardHeader className='hidden'>
       </CardHeader>
-      <CardContent className="flex-1 p-0">
+      <CardContent className="flex-1 p-0 overflow-hidden">
         <ScrollArea className="h-full p-4" ref={scrollAreaRef}>
           <div className="flex flex-col gap-4">
             {messages.map((message, index) => (
@@ -85,7 +102,7 @@ export default function AiChat() {
                       : 'bg-muted'
                   }`}
                 >
-                  <p className="whitespace-pre-wrap">{message.content}</p>
+                  <div className="whitespace-pre-wrap">{message.content}</div>
                 </div>
                 {message.role === 'user' && (
                   <Avatar>
