@@ -62,7 +62,7 @@ export default function AiChat() {
       <CardHeader className='hidden'>
       </CardHeader>
       <CardContent className="flex-1 p-0">
-        <ScrollArea className="h-full max-h-[calc(100vh-22rem)] p-4" ref={scrollAreaRef}>
+        <ScrollArea className="h-full p-4" ref={scrollAreaRef}>
           <div className="flex flex-col gap-4">
             {messages.map((message, index) => (
               <div
