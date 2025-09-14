@@ -12,7 +12,7 @@ import {
   BookOpen,
   BrainCircuit,
   ExternalLink,
-  HeartHand,
+  HeartHandshake,
   Sparkles,
   Users,
 } from 'lucide-react';
@@ -201,7 +201,7 @@ export default function ResourcesPage() {
             <Sparkles className="mr-2" /> Mindfulness
           </TabsTrigger>
           <TabsTrigger value="self-care" className="py-2">
-            <HeartHand className="mr-2" /> Self-Care
+            <HeartHandshake className="mr-2" /> Self-Care
           </TabsTrigger>
           <TabsTrigger value="professional-help" className="py-2">
             <Users className="mr-2" /> Professional Help
