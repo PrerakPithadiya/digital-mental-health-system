@@ -81,14 +81,14 @@ export default function AppSidebar() {
                     <CollapsibleContent asChild>
                         <SidebarMenuSub>
                         <SidebarMenuSubItem>
-                            <Link href='/forums' passHref legacyBehavior>
+                            <Link href='/forums'>
                               <SidebarMenuSubButton isActive={pathname === '/forums'}>
                                   <span>All Posts</span>
                               </SidebarMenuSubButton>
                             </Link>
                         </SidebarMenuSubItem>
                         <SidebarMenuSubItem>
-                            <Link href='/forums/saved' passHref legacyBehavior>
+                            <Link href='/forums/saved'>
                               <SidebarMenuSubButton isActive={pathname === '/forums/saved'}>
                                   <Bookmark />
                                   <span>Saved Posts</span>
@@ -96,7 +96,7 @@ export default function AppSidebar() {
                             </Link>
                         </SidebarMenuSubItem>
                         <SidebarMenuSubItem>
-                            <Link href='/forums/liked' passHref legacyBehavior>
+                            <Link href='/forums/liked'>
                               <SidebarMenuSubButton isActive={pathname === '/forums/liked'}>
                                   <Heart />
                                   <span>Liked Posts</span>
