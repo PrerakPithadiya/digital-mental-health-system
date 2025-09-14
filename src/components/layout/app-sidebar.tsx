@@ -9,6 +9,9 @@ import {
   SidebarMenu,
   SidebarMenuItem,
   SidebarMenuButton,
+  SidebarMenuSub,
+  SidebarMenuSubButton,
+  SidebarMenuSubItem
 } from '@/components/ui/sidebar';
 import Logo from '@/components/logo';
 import {
@@ -20,15 +23,17 @@ import {
   Settings,
   Shield,
   User,
+  Bookmark,
+  Heart
 } from 'lucide-react';
 import Link from 'next/link';
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '../ui/collapsible';
 
 const navItems = [
   { href: '/dashboard', icon: LayoutDashboard, label: 'Dashboard' },
   { href: '/ai-support', icon: Bot, label: 'AI First-Aid' },
   { href: '/booking', icon: CalendarCheck, label: 'Counselor Booking' },
   { href: '/resources', icon: Library, label: 'Resource Hub' },
-  { href: '/forums', icon: MessageSquare, label: 'Peer Forums' },
 ];
 
 const accountItems = [
@@ -39,6 +44,8 @@ const accountItems = [
 
 export default function AppSidebar() {
   const pathname = usePathname();
+  const isForumsActive = pathname.startsWith('/forums');
+
 
   return (
     <Sidebar>
@@ -60,6 +67,38 @@ export default function AppSidebar() {
               </Link>
             </SidebarMenuItem>
           ))}
+            <Collapsible asChild>
+                <SidebarMenuItem>
+                    <CollapsibleTrigger asChild>
+                        <SidebarMenuButton
+                        isActive={isForumsActive}
+                        tooltip='Peer Forums'
+                        >
+                        <MessageSquare />
+                        <span>Peer Forums</span>
+                        </SidebarMenuButton>
+                    </CollapsibleTrigger>
+                    <CollapsibleContent asChild>
+                        <SidebarMenuSub>
+                        <SidebarMenuSubItem>
+                            <Link href='/forums'>
+                            <SidebarMenuSubButton isActive={pathname === '/forums'}>
+                                <span>All Posts</span>
+                            </SidebarMenuSubButton>
+                            </Link>
+                        </SidebarMenuSubItem>
+                        <SidebarMenuSubItem>
+                            <Link href='/forums/saved'>
+                            <SidebarMenuSubButton isActive={pathname === '/forums/saved'}>
+                                <Bookmark />
+                                <span>Saved Posts</span>
+                            </SidebarMenuSubButton>
+                            </Link>
+                        </SidebarMenuSubItem>
+                        </SidebarMenuSub>
+                    </CollapsibleContent>
+                </SidebarMenuItem>
+            </Collapsible>
         </SidebarMenu>
         <SidebarMenu>
           {accountItems.map((item) => (

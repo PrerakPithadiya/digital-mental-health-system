@@ -19,6 +19,7 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from '@/components/ui/alert-dialog';
+import Link from 'next/link';
 
 type Post = {
   id: number;
@@ -29,6 +30,7 @@ type Post = {
   likes: number;
   comments: number;
   isOwn?: boolean;
+  saved?: boolean;
 };
 
 const initialPosts: Post[] = [
@@ -150,20 +152,22 @@ export default function ForumsPage() {
             </CardContent>
             <CardFooter className="flex items-center justify-between text-muted-foreground">
               <div className="flex items-center gap-6">
-                <button className="flex items-center gap-2 hover:text-primary transition-colors">
+                <Link href="#" className="flex items-center gap-2 hover:text-primary transition-colors">
                   <MessageSquare className="h-5 w-5" />
                   <span>{post.comments} Comments</span>
-                </button>
+                </Link>
                 <button className="flex items-center gap-2 hover:text-pink-500 transition-colors">
                   <Heart className="h-5 w-5" />
                   <span>{post.likes} Likes</span>
                 </button>
               </div>
               <div className="flex items-center gap-2">
-                 <button className="flex items-center gap-2 hover:text-primary transition-colors">
-                    <Bookmark className="h-5 w-5" />
-                    <span>Save</span>
-                </button>
+                 <Button asChild variant="ghost" className="flex items-center gap-2 hover:text-primary transition-colors">
+                    <Link href="/forums/saved">
+                      <Bookmark className="h-5 w-5" />
+                      <span>Save</span>
+                    </Link>
+                </Button>
                 {post.isOwn && (
                    <AlertDialog>
                     <AlertDialogTrigger asChild>
