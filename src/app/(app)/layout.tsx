@@ -13,10 +13,12 @@ export default async function AppLayout({
       <div className="flex min-h-screen">
         <AppSidebar />
         <SidebarInset className="min-h-screen">
-          <AppHeader />
-          <main className="flex-1 p-4 sm:p-6 lg:p-8">
-            {children}
-          </main>
+          <div className="flex flex-col flex-1">
+            <AppHeader />
+            <main className="flex-1 p-4 sm:p-6 lg:p-8">
+              {children}
+            </main>
+          </div>
         </SidebarInset>
       </div>
     </SidebarProvider>
