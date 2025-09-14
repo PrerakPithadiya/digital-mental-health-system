@@ -46,7 +46,7 @@ const resources = {
       },
       {
         title: 'Progressive Muscle Relaxation',
-        url: 'https://www.anxietycanada.com/articles/progressive-muscle-relaxation-pmr/',
+        url: 'https://www.anxietycanada.com/articles/how-to-do-progressive-muscle-relaxation-pmr/',
         source: 'Anxiety Canada',
       },
     ],
