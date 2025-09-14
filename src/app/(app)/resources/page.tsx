@@ -107,26 +107,41 @@ const resources = {
         source: 'Mindful.org',
       },
       {
+        title: 'Getting Started with Mindfulness',
+        url: 'https://www.mindful.org/meditation/mindfulness-getting-started/',
+        source: 'Mindful.org',
+      },
+      {
         title: 'How to Practice Mindfulness Meditation',
         url: 'https://www.nytimes.com/guides/well/how-to-meditate',
         source: 'The New York Times',
       },
+       {
+        title: 'Mindfulness Exercises',
+        url: 'https://www.mayoclinic.org/healthy-lifestyle/consumer-health/in-depth/mindfulness-exercises/art-20046356',
+        source: 'Mayo Clinic',
+      },
     ],
     tools: [
       {
+        title: 'UCLA Mindful App',
+        url: 'https://www.uclahealth.org/mindful',
+        source: 'Free Guided Meditations (App)',
+      },
+      {
         title: 'Headspace App',
         url: 'https://www.headspace.com/',
-        source: 'Guided Meditation App',
+        source: 'Guided Meditation (App)',
       },
       {
         title: 'Calm App',
         url: 'https://www.calm.com/',
-        source: 'Meditation & Sleep App',
+        source: 'Meditation & Sleep (App)',
       },
-       {
-        title: 'UCLA Mindful App',
-        url: 'https://www.uclahealth.org/mindful',
-        source: 'Free Guided Meditations',
+      {
+        title: 'The Free Mindfulness Project',
+        url: 'https://www.freemindfulness.org/download',
+        source: 'Free Guided Meditations (Audio)',
       },
     ],
   },
