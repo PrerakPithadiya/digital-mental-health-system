@@ -23,40 +23,80 @@ const resources = {
   stress: {
     articles: [
       {
-        title: 'Managing Stress in College',
-        url: 'https://www.jedfoundation.org/resource/managing-stress-in-college/',
-        source: 'The Jed Foundation',
+        title: 'Tips to reduce stress',
+        url: 'https://www.nhs.uk/mental-health/self-help/guides-tools-and-activities/tips-to-reduce-stress/',
+        source: 'NHS',
       },
       {
-        title: 'Understanding Anxiety Disorders',
+        title: 'Managing Stress',
+        url: 'https://www.cdc.gov/mental-health/living-with/index.html',
+        source: 'CDC',
+      },
+      {
+        title: 'Anxiety Disorders',
         url: 'https://www.nimh.nih.gov/health/topics/anxiety-disorders',
-        source: 'NIMH',
+        source: 'National Institute of Mental Health (NIMH)',
       },
       {
-        title: 'Coping with Exam Stress',
-        url: 'https://www.psychologytoday.com/us/blog/thinking-about-kids/201905/coping-exam-stress',
-        source: 'Psychology Today',
+        title: 'How to manage and reduce stress',
+        url: 'https://www.mentalhealth.org.uk/explore-mental-health/publications/how-manage-and-reduce-stress',
+        source: 'Mental Health Foundation',
+      },
+      {
+        title: 'Stress Management',
+        url: 'https://www.helpguide.org/mental-health/stress/stress-management',
+        source: 'HelpGuide',
+      },
+      {
+        title: 'Top ways to reduce daily stress',
+        url: 'https://www.health.harvard.edu/staying-healthy/top-ways-to-reduce-daily-stress',
+        source: 'Harvard Health',
       },
     ],
     tools: [
       {
-        title: 'Deep Breathing Exercise (Video)',
-        url: 'https://www.youtube.com/watch?v=resm2bigFvA',
-        source: 'YouTube',
+        title: 'Stress relievers: Tips, tools, and techniques',
+        url: 'https://www.mayoclinic.org/healthy-lifestyle/stress-management/in-depth/stress-relievers/art-20047257',
+        source: 'Mayo Clinic',
       },
       {
-        title: 'Progressive Muscle Relaxation',
-        url: 'https://www.anxietycanada.com/articles/how-to-do-progressive-muscle-relaxation-pmr/',
-        source: 'Anxiety Canada',
+        title: 'Stress management tools & resources',
+        url: 'https://hr.umich.edu/benefits-wellness/health-well-being/mental-emotional-health/learn-more-about-mental-emotional-health/stress-management-resources/stress-management-tools-resources',
+        source: 'University of Michigan',
+      },
+      {
+        title: 'Headspace (Mindfulness & Meditation App)',
+        url: 'https://www.headspace.com',
+        source: 'Headspace',
       },
     ],
     organizations: [
-       {
-        title: 'Anxiety & Depression Association of America (ADAA)',
+      {
+        title: 'Find Help',
+        url: 'https://www.nimh.nih.gov/health/find-help',
+        source: 'National Institute of Mental Health (NIMH)',
+      },
+      {
+        title: 'WHO: Mental health',
+        url: 'https://www.who.int/health-topics/mental-health',
+        source: 'World Health Organization (WHO)',
+      },
+      {
+        title: 'American Institute of Stress',
+        url: 'https://www.stress.org',
+        source: 'American Institute of Stress',
+      },
+      {
+        title: 'Anxiety and Depression Association of America (ADAA)',
         url: 'https://adaa.org',
         source: 'ADAA',
       },
-    ]
+      {
+        title: 'Mind (UK): Anxiety self-care',
+        url: 'https://www.mind.org.uk/information-support/types-of-mental-health-problems/anxiety-and-panic-attacks/self-care/',
+        source: 'Mind (UK)',
+      },
+    ],
   },
   mindfulness: {
     articles: [
