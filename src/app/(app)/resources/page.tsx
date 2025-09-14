@@ -174,6 +174,23 @@ export default async function ResourcesPage() {
             </TabsContent>
 
             <TabsContent value="self-care">
+              <div className="prose prose-stone max-w-none dark:prose-invert mb-6">
+                <p>
+                  Self-care is the foundation of a healthy and balanced life. It involves intentionally taking actions to care for your physical, emotional, mental, social, and spiritual well-being. Prioritizing self-care empowers individuals to manage stress, maintain resilience, and foster overall happiness. Self-care is not a luxury but a necessity that supports your ability to function optimally in daily life and enhances your capacity to care for others.
+                </p>
+                <p>
+                  At its core, self-care encompasses a variety of practices such as nourishing your body with nutritious foods, getting sufficient restful sleep, engaging in regular physical activity, and attending to personal hygiene. Emotional self-care encourages recognizing and expressing feelings in a healthy way, seeking support when needed, and cultivating positive coping mechanisms. Mental self-care includes activities like mindfulness, learning, and digital balance to keep the mind sharp, focused, and calm.
+                </p>
+                <p>
+                  Social self-care involves nurturing meaningful relationships, setting boundaries, and building supportive networks that foster connection and belonging. Spiritual self-care connects you to your inner values and purpose—whether through meditation, prayer, nature, or personal reflection—bringing peace and grounding to life’s challenges. Practical self-care ensures your responsibilities, time, and environment are managed in ways that reduce stress and promote stability.
+                </p>
+                <p>
+                  Incorporating self-care into your daily routine is a personal journey and can take many forms depending on your needs and lifestyle. Regularly checking in with yourself to assess what you need physically, emotionally, and mentally can guide you to effective choices. Remember, even small acts of self-care—like taking a deep breath, enjoying a hobby, or asking for help—can create profound positive effects.
+                </p>
+                <p>
+                  Commit to self-care as a vital part of your well-being. It is not only about preventing burnout and illness but also about enriching your life, enhancing your relationships, and unlocking your fullest potential. Prioritize yourself with kindness, intention, and consistency, and watch as your overall health and happiness flourish.
+                </p>
+              </div>
               <Accordion type="single" collapsible defaultValue="item-1">
                   <AccordionItem value="item-1">
                     <AccordionTrigger className="text-lg font-semibold">
