@@ -19,219 +19,8 @@ import {
 } from 'lucide-react';
 import Link from 'next/link';
 import PageHeader from '@/components/page-header';
-
-const resources = {
-  stress: {
-    articles: [
-      {
-        title: 'Tips to reduce stress',
-        url: 'https://www.nhs.uk/mental-health/self-help/guides-tools-and-activities/tips-to-reduce-stress/',
-        source: 'NHS',
-      },
-      {
-        title: 'Managing Stress',
-        url: 'https://www.cdc.gov/mental-health/living-with/index.html',
-        source: 'CDC',
-      },
-      {
-        title: 'Anxiety Disorders',
-        url: 'https://www.nimh.nih.gov/health/topics/anxiety-disorders',
-        source: 'National Institute of Mental Health (NIMH)',
-      },
-      {
-        title: 'How to manage and reduce stress',
-        url: 'https://www.mentalhealth.org.uk/explore-mental-health/publications/how-manage-and-reduce-stress',
-        source: 'Mental Health Foundation',
-      },
-      {
-        title: 'Stress Management',
-        url: 'https://www.helpguide.org/mental-health/stress/stress-management',
-        source: 'HelpGuide',
-      },
-      {
-        title: 'Top ways to reduce daily stress',
-        url: 'https://www.health.harvard.edu/staying-healthy/top-ways-to-reduce-daily-stress',
-        source: 'Harvard Health',
-      },
-    ],
-    tools: [
-      {
-        title: 'Stress relievers: Tips, tools, and techniques',
-        url: 'https://www.mayoclinic.org/healthy-lifestyle/stress-management/in-depth/stress-relievers/art-20047257',
-        source: 'Mayo Clinic',
-      },
-      {
-        title: 'Stress management tools & resources',
-        url: 'https://hr.umich.edu/benefits-wellness/health-well-being/mental-emotional-health/learn-more-about-mental-emotional-health/stress-management-resources/stress-management-tools-resources',
-        source: 'University of Michigan',
-      },
-      {
-        title: 'Headspace (Mindfulness & Meditation App)',
-        url: 'https://www.headspace.com',
-        source: 'Headspace',
-      },
-    ],
-    organizations: [
-      {
-        title: 'Find Help',
-        url: 'https://www.nimh.nih.gov/health/find-help',
-        source: 'National Institute of Mental Health (NIMH)',
-      },
-      {
-        title: 'WHO: Mental health',
-        url: 'https://www.who.int/health-topics/mental-health',
-        source: 'World Health Organization (WHO)',
-      },
-      {
-        title: 'American Institute of Stress',
-        url: 'https://www.stress.org',
-        source: 'American Institute of Stress',
-      },
-      {
-        title: 'Anxiety and Depression Association of America (ADAA)',
-        url: 'https://adaa.org',
-        source: 'ADAA',
-      },
-      {
-        title: 'Mind (UK): Anxiety self-care',
-        url: 'https://www.mind.org.uk/information-support/types-of-mental-health-problems/anxiety-and-panic-attacks/self-care/',
-        source: 'Mind (UK)',
-      },
-    ],
-  },
-  mindfulness: {
-    articles: [
-      {
-        title: 'What is Mindfulness?',
-        url: 'https://www.mindful.org/what-is-mindfulness/',
-        source: 'Mindful.org',
-      },
-      {
-        title: 'Getting Started with Mindfulness',
-        url: 'https://www.mindful.org/meditation/mindfulness-getting-started/',
-        source: 'Mindful.org',
-      },
-      {
-        title: 'How to Practice Mindfulness Meditation',
-        url: 'https://www.nytimes.com/guides/well/how-to-meditate',
-        source: 'The New York Times',
-      },
-       {
-        title: 'Mindfulness Exercises',
-        url: 'https://www.mayoclinic.org/healthy-lifestyle/consumer-health/in-depth/mindfulness-exercises/art-20046356',
-        source: 'Mayo Clinic',
-      },
-    ],
-    tools: [
-      {
-        title: 'UCLA Mindful App',
-        url: 'https://www.uclahealth.org/mindful',
-        source: 'Free Guided Meditations (App)',
-      },
-      {
-        title: 'Headspace App',
-        url: 'https://www.headspace.com/',
-        source: 'Guided Meditation (App)',
-      },
-      {
-        title: 'Calm App',
-        url: 'https://www.calm.com/',
-        source: 'Meditation & Sleep (App)',
-      },
-      {
-        title: 'The Free Mindfulness Project',
-        url: 'https://www.freemindfulness.org/download',
-        source: 'Free Guided Meditations (Audio)',
-      },
-    ],
-  },
-  selfCare: {
-     articles: [
-      {
-        title: 'The Importance of Sleep for Mental Health',
-        url: 'https://www.sleepfoundation.org/mental-health',
-        source: 'Sleep Foundation',
-      },
-       {
-        title: 'How to Build a Self-Care Plan',
-        url: 'https://www.mentalhealthfirstaid.org/2020/07/how-to-create-a-self-care-plan/',
-        source: 'Mental Health First Aid',
-      },
-      {
-        title: 'The Connection Between Diet and Mental Wellness',
-        url: 'https://www.mind.org.uk/information-support/tips-for-everyday-living/food-and-mood/',
-        source: 'Mind UK',
-      },
-    ],
-    tools: [
-       {
-        title: '7-Day Self-Care Challenge',
-        url: 'https://www.verywellmind.com/self-care-challenge-4845517',
-        source: 'Verywell Mind',
-      },
-    ],
-  },
-  professionalHelp: {
-     articles: [
-      {
-        title: 'How to Find the Right Therapist',
-        url: 'https://www.psychologytoday.com/us/basics/therapy/how-find-the-right-therapist',
-        source: 'Psychology Today',
-      },
-       {
-        title: "What to Expect in Your First Therapy Session",
-        url: 'https://www.verywellmind.com/what-to-expect-in-your-first-therapy-session-2795744',
-        source: 'Verywell Mind',
-      },
-    ],
-    organizations: [
-       {
-        title: 'National Alliance on Mental Illness (NAMI)',
-        url: 'https://www.nami.org',
-        source: 'Support & Education',
-      },
-       {
-        title: 'The Jed Foundation (JED)',
-        url: 'https://www.jedfoundation.org/',
-        source: 'Protecting student mental health',
-      },
-      {
-        title: 'Psychology Today Therapist Finder',
-        url: 'https://www.psychologytoday.com/us/therapists',
-        source: 'Find a therapist near you',
-      },
-    ],
-  },
-  stories: {
-    testimonials: [
-        {
-          title: 'Browse Personal Stories from ADAA',
-          url: 'https://adaa.org/living-with-anxiety/personal-stories/all-stories',
-          source: 'Anxiety and Depression Association of America',
-        },
-        {
-          title: 'Mental Health Stories to Inspire You',
-          url: 'https://www.beyondblue.org.au/mental-health/personal-stories',
-          source: 'Beyond Blue (Australia)',
-        },
-        {
-          title: 'NAMI: Personal Stories Blog',
-          url: 'https://www.nami.org/blogs/personal-stories/',
-          source: 'National Alliance on Mental Illness',
-        },
-        {
-          title: 'Stories of Lived Experience',
-          url: 'https://www.blackdoginstitute.org.au/resources-support/personal-stories/',
-          source: 'Black Dog Institute',
-        },
-         {
-          title: 'Overcoming anxiety: Three powerful stories',
-          url: 'https://www.aia.com/en/health-wellness/healthy-living/healthy-mind/Overcoming-anxiety',
-          source: 'AIA',
-        },
-    ],
-  },
-};
+import { getResources, seedResources } from '@/lib/services/resources';
+import { Resource, ResourceCategory } from '@/lib/models/resource';
 
 const ResourceLink = ({
   url,
@@ -256,7 +45,31 @@ const ResourceLink = ({
   </Link>
 );
 
-export default function ResourcesPage() {
+const groupResourcesByCategory = (resources: Resource[]) => {
+  return resources.reduce((acc, resource) => {
+    const { category, subcategory } = resource;
+    if (!acc[category]) {
+      acc[category] = {};
+    }
+    if (!acc[category][subcategory]) {
+      acc[category][subcategory] = [];
+    }
+    acc[category][subcategory].push(resource);
+    return acc;
+  }, {} as Record<ResourceCategory, Record<string, Resource[]>>);
+};
+
+
+export default async function ResourcesPage() {
+  await seedResources(); // This will seed the DB only if it's empty
+  const resources = await getResources();
+  const groupedResources = groupResourcesByCategory(resources);
+
+  const stressResources = groupedResources['Stress & Anxiety'] || {};
+  const mindfulnessResources = groupedResources['Mindfulness'] || {};
+  const selfCareResources = groupedResources['Self-Care'] || {};
+  const storiesResources = groupedResources['Personal Stories'] || {};
+
   return (
     <div>
       <PageHeader
@@ -302,7 +115,7 @@ export default function ResourcesPage() {
                       <BookOpen className="mr-2 text-primary" /> Articles & Guides
                     </AccordionTrigger>
                     <AccordionContent className="pt-2 space-y-2">
-                      {resources.stress.articles.map((item) => (
+                      {stressResources['Articles & Guides']?.map((item) => (
                         <ResourceLink key={item.url} {...item} />
                       ))}
                     </AccordionContent>
@@ -312,7 +125,7 @@ export default function ResourcesPage() {
                       <Sparkles className="mr-2 text-primary" /> Tools & Apps
                     </AccordionTrigger>
                     <AccordionContent className="pt-2 space-y-2">
-                      {resources.stress.tools.map((item) => (
+                      {stressResources['Tools & Apps']?.map((item) => (
                         <ResourceLink key={item.url} {...item} />
                       ))}
                     </AccordionContent>
@@ -322,7 +135,7 @@ export default function ResourcesPage() {
                       <Users className="mr-2 text-primary" /> Support Organizations
                     </AccordionTrigger>
                     <AccordionContent className="pt-2 space-y-2">
-                      {resources.stress.organizations.map((item) => (
+                      {stressResources['Support Organizations']?.map((item) => (
                         <ResourceLink key={item.url} {...item} />
                       ))}
                     </AccordionContent>
@@ -337,7 +150,7 @@ export default function ResourcesPage() {
                        <BookOpen className="mr-2 text-primary" /> Articles & Guides
                     </AccordionTrigger>
                     <AccordionContent className="pt-2 space-y-2">
-                      {resources.mindfulness.articles.map((item) => (
+                      {mindfulnessResources['Articles & Guides']?.map((item) => (
                         <ResourceLink key={item.url} {...item} />
                       ))}
                     </AccordionContent>
@@ -347,7 +160,7 @@ export default function ResourcesPage() {
                       <Sparkles className="mr-2 text-primary" /> Apps & Tools
                     </AccordionTrigger>
                     <AccordionContent className="pt-2 space-y-2">
-                      {resources.mindfulness.tools.map((item) => (
+                      {mindfulnessResources['Apps & Tools']?.map((item) => (
                         <ResourceLink key={item.url} {...item} />
                       ))}
                     </AccordionContent>
@@ -362,7 +175,7 @@ export default function ResourcesPage() {
                       <BookOpen className="mr-2 text-primary" /> Articles & Guides
                     </AccordionTrigger>
                     <AccordionContent className="pt-2 space-y-2">
-                      {resources.selfCare.articles.map((item) => (
+                      {selfCareResources['Articles & Guides']?.map((item) => (
                         <ResourceLink key={item.url} {...item} />
                       ))}
                     </AccordionContent>
@@ -372,39 +185,14 @@ export default function ResourcesPage() {
                       <Sparkles className="mr-2 text-primary" /> Tools & Challenges
                     </AccordionTrigger>
                     <AccordionContent className="pt-2 space-y-2">
-                      {resources.selfCare.tools.map((item) => (
+                      {selfCareResources['Tools & Challenges']?.map((item) => (
                         <ResourceLink key={item.url} {...item} />
                       ))}
                     </AccordionContent>
                   </AccordionItem>
                 </Accordion>
             </TabsContent>
-            
-            <TabsContent value="professional-help">
-                <Accordion type="single" collapsible defaultValue="item-1">
-                  <AccordionItem value="item-1">
-                    <AccordionTrigger className="text-lg font-semibold">
-                      <BookOpen className="mr-2 text-primary" /> Articles & Guides
-                    </AccordionTrigger>
-                    <AccordionContent className="pt-2 space-y-2">
-                      {resources.professionalHelp.articles.map((item) => (
-                        <ResourceLink key={item.url} {...item} />
-                      ))}
-                    </AccordionContent>
-                  </AccordionItem>
-                  <AccordionItem value="item-2" className='border-b-0'>
-                    <AccordionTrigger className="text-lg font-semibold">
-                      <Users className="mr-2 text-primary" /> Organizations & Directories
-                    </AccordionTrigger>
-                    <AccordionContent className="pt-2 space-y-2">
-                      {resources.professionalHelp.organizations.map((item) => (
-                        <ResourceLink key={item.url} {...item} />
-                      ))}
-                    </AccordionContent>
-                  </AccordionItem>
-                </Accordion>
-            </TabsContent>
-            
+
             <TabsContent value="stories">
                 <Accordion type="single" collapsible defaultValue="item-1">
                   <AccordionItem value="item-1" className='border-b-0'>
@@ -412,7 +200,7 @@ export default function ResourcesPage() {
                       <Quote className="mr-2 text-primary" /> Personal Stories & Testimonials
                     </AccordionTrigger>
                     <AccordionContent className="pt-2 space-y-2">
-                      {resources.stories.testimonials.map((item) => (
+                      {storiesResources['Testimonials']?.map((item) => (
                         <ResourceLink key={item.url} {...item} />
                       ))}
                     </AccordionContent>
