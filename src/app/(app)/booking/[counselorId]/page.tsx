@@ -68,7 +68,7 @@ const mockCounselors = [
     id: "9",
     name: "Ms. Sophia Brown",
     title: "Clinical Social Worker",
-imageId: "counselor-9",
+    imageId: "counselor-9",
   },
   {
     id: "10",
@@ -122,12 +122,34 @@ export default function ScheduleAppointmentPage() {
                 title="Appointment Confirmed!"
                 description="Your session has been successfully booked."
             />
-            <Card className="max-w-md mx-auto text-center">
-                <CardContent className="p-8 flex flex-col items-center gap-4">
+            <Card className="max-w-lg mx-auto text-center">
+                <CardContent className="p-8 flex flex-col items-center gap-6">
                     <CheckCircle className="h-16 w-16 text-green-500" />
-                    <p className="text-lg">
-                        Your appointment with <strong>{counselor.name}</strong> on <strong>{selectedDate?.toLocaleDateString()}</strong> at <strong>{selectedTime}</strong> is confirmed.
-                    </p>
+                    <div className='text-center'>
+                      <p className="text-lg mb-2">
+                          Your appointment with <strong>{counselor.name}</strong> is confirmed.
+                      </p>
+                      <p className="text-muted-foreground">You will receive an email confirmation shortly.</p>
+                    </div>
+
+                    <div className="w-full p-4 bg-muted rounded-lg border text-left space-y-3">
+                      <h3 className="font-semibold text-center">Appointment Details</h3>
+                       <div className="flex items-center gap-3">
+                          <CalendarIcon className="h-5 w-5 text-muted-foreground" />
+                          <div>
+                            <p className="text-sm text-muted-foreground">Date</p>
+                            <p className="font-semibold">{selectedDate?.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' })}</p>
+                          </div>
+                       </div>
+                        <div className="flex items-center gap-3">
+                          <Clock className="h-5 w-5 text-muted-foreground" />
+                          <div>
+                            <p className="text-sm text-muted-foreground">Time</p>
+                            <p className="font-semibold">{selectedTime}</p>
+                          </div>
+                       </div>
+                    </div>
+                    
                     <Button asChild className="w-full mt-4">
                         <Link href="/booking">Book Another Appointment</Link>
                     </Button>
