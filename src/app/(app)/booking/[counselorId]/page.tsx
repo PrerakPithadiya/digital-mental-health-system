@@ -3,7 +3,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { useParams, useRouter } from 'next/navigation';
+import { useParams, useRouter }from 'next/navigation';
 import PageHeader from "@/components/page-header";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
@@ -16,7 +16,7 @@ import { useToast } from '@/hooks/use-toast';
 import Link from 'next/link';
 
 // Mock data - in a real app, this would come from an API
-const mockCounselors = [
+const initialCounselors = [
   {
     id: "1",
     name: "Dr. Evelyn Reed",
@@ -30,6 +30,8 @@ const mockCounselors = [
     name: "Mr. David Chen",
     title: "Clinical Social Worker",
     imageId: "counselor-2",
+    previouslyBooked: false,
+    lastAppointment: null
   },
   {
     id: "3",
@@ -44,42 +46,56 @@ const mockCounselors = [
     name: "Dr. Samuel Jones",
     title: "Licensed Mental Health Counselor",
     imageId: "counselor-4",
+    previouslyBooked: false,
+    lastAppointment: null
   },
   {
     id: "5",
     name: "Ms. Aisha Khan",
     title: "Marriage and Family Therapist",
     imageId: "counselor-5",
+    previouslyBooked: false,
+    lastAppointment: null
   },
   {
     id: "6",
     name: "Dr. Ben Carter",
     title: "Clinical Psychologist",
     imageId: "counselor-6",
+    previouslyBooked: false,
+    lastAppointment: null
   },
   {
     id: "7",
     name: "Dr. Chloe Williams",
     title: "Counseling Psychologist",
     imageId: "counselor-7",
+    previouslyBooked: false,
+    lastAppointment: null
   },
   {
     id: "8",
     name: "Mr. Leo Martinez",
     title: "Licensed Professional Counselor",
     imageId: "counselor-8",
+    previouslyBooked: false,
+    lastAppointment: null
   },
   {
     id: "9",
     name: "Ms. Sophia Brown",
     title: "Clinical Social Worker",
     imageId: "counselor-9",
+    previouslyBooked: false,
+    lastAppointment: null
   },
   {
     id: "10",
     name: "Dr. Olivia Wilson",
     title: "Psychologist",
     imageId: "counselor-10",
+    previouslyBooked: false,
+    lastAppointment: null
   }
 ];
 
@@ -87,18 +103,25 @@ const availableTimes = [
   '09:00 AM', '10:00 AM', '11:00 AM', '01:00 PM', '02:00 PM', '03:00 PM'
 ];
 
+// We use a global variable to persist state across navigation for this demo
+if (typeof window !== 'undefined') {
+  (window as any).counselors = (window as any).counselors || initialCounselors;
+}
+
+
 export default function ScheduleAppointmentPage() {
   const params = useParams();
   const router = useRouter();
   const { toast } = useToast();
   const counselorId = params.counselorId as string;
   
+  const [mockCounselors, setMockCounselors] = useState(() => (typeof window !== 'undefined' ? (window as any).counselors : initialCounselors));
   const [selectedDate, setSelectedDate] = useState<Date | undefined>(new Date());
   const [selectedTime, setSelectedTime] = useState<string | null>(null);
   const [isConfirmed, setIsConfirmed] = useState(false);
   const [formattedHistory, setFormattedHistory] = useState<{date: string, time: string} | null>(null);
 
-  const counselor = mockCounselors.find(c => c.id === counselorId);
+  const counselor = mockCounselors.find((c: any) => c.id === counselorId);
   const counselorImage = PlaceHolderImages.find(img => img.id === counselor?.imageId);
 
   useEffect(() => {
@@ -122,6 +145,34 @@ export default function ScheduleAppointmentPage() {
 
   const handleConfirmAppointment = () => {
     if (selectedDate && selectedTime) {
+       const newAppointmentDateTime = new Date(selectedDate);
+      const [time, modifier] = selectedTime.split(' ');
+      let [hours, minutes] = time.split(':').map(Number);
+
+      if (modifier === 'PM' && hours < 12) {
+        hours += 12;
+      }
+      if (modifier === 'AM' && hours === 12) {
+        hours = 0;
+      }
+      newAppointmentDateTime.setHours(hours, minutes, 0, 0);
+
+      const updatedCounselors = mockCounselors.map((c: any) => {
+        if (c.id === counselorId) {
+          return {
+            ...c,
+            previouslyBooked: true,
+            lastAppointment: newAppointmentDateTime.toISOString(),
+          };
+        }
+        return c;
+      });
+      
+      setMockCounselors(updatedCounselors);
+      if (typeof window !== 'undefined') {
+        (window as any).counselors = updatedCounselors;
+      }
+
       toast({
         title: "Appointment Confirmed!",
         description: `Your appointment with ${counselor.name} is set for ${selectedDate.toLocaleDateString()} at ${selectedTime}.`,

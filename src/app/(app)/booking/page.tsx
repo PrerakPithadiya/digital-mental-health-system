@@ -1,4 +1,7 @@
 
+'use client';
+
+import { useState, useEffect } from 'react';
 import PageHeader from "@/components/page-header";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
@@ -8,7 +11,7 @@ import { PlaceHolderImages } from "@/lib/placeholder-images";
 import { User, CheckCheck } from "lucide-react";
 import Link from "next/link";
 
-const mockCounselors = [
+const initialCounselors = [
   {
     id: "1",
     name: "Dr. Evelyn Reed",
@@ -17,6 +20,7 @@ const mockCounselors = [
     description: "Dr. Reed specializes in cognitive-behavioral therapy (CBT) and helps students develop practical coping skills to manage academic stress and anxiety. She has over 10 years of experience in university counseling centers.",
     imageId: "counselor-1",
     previouslyBooked: true,
+    lastAppointment: "2024-06-20T14:00:00Z"
   },
   {
     id: "2",
@@ -25,6 +29,8 @@ const mockCounselors = [
     specialties: ["Depression", "Relationships", "Family Issues"],
     description: "Mr. Chen provides a compassionate and supportive environment for students navigating depression and relationship challenges. He uses a strengths-based approach to empower students.",
     imageId: "counselor-2",
+    previouslyBooked: false,
+    lastAppointment: null
   },
   {
     id: "3",
@@ -34,6 +40,7 @@ const mockCounselors = [
     description: "Dr. Garcia has expertise in trauma-informed care and mindfulness-based stress reduction (MBSR). She is dedicated to helping students find resilience and healing in the face of adversity.",
     imageId: "counselor-3",
     previouslyBooked: true,
+    lastAppointment: "2024-05-10T11:00:00Z"
   },
   {
     id: "4",
@@ -42,6 +49,8 @@ const mockCounselors = [
     specialties: ["ADHD", "Behavioral Issues", "Coping Skills"],
     description: "Dr. Jones works with students to develop strategies for managing ADHD and other behavioral challenges. He focuses on creating personalized plans that foster academic and personal success.",
     imageId: "counselor-4",
+    previouslyBooked: false,
+    lastAppointment: null
   },
   {
     id: "5",
@@ -50,6 +59,8 @@ const mockCounselors = [
     specialties: ["Relationship Counseling", "Family Conflict", "Communication"],
     description: "Ms. Khan helps students navigate the complexities of interpersonal relationships, offering guidance on communication, conflict resolution, and building healthy connections.",
     imageId: "counselor-5",
+    previouslyBooked: false,
+    lastAppointment: null
   },
   {
     id: "6",
@@ -58,6 +69,8 @@ const mockCounselors = [
     specialties: ["Eating Disorders", "Body Image", "Self-Esteem"],
     description: "Dr. Carter provides specialized support for students dealing with eating disorders and body image concerns. He uses an evidence-based, compassionate approach to promote healing and self-acceptance.",
     imageId: "counselor-6",
+    previouslyBooked: false,
+    lastAppointment: null
   },
   {
     id: "7",
@@ -66,6 +79,8 @@ const mockCounselors = [
     specialties: ["Career Counseling", "Life Transitions", "Identity"],
     description: "Dr. Williams assists students in exploring their career paths, navigating major life transitions, and understanding their personal identity. She empowers students to make choices that align with their values and goals.",
     imageId: "counselor-7",
+    previouslyBooked: false,
+    lastAppointment: null
   },
   {
     id: "8",
@@ -74,6 +89,8 @@ const mockCounselors = [
     specialties: ["Substance Abuse", "Addiction", "Recovery"],
     description: "Mr. Martinez offers a supportive space for students struggling with substance use and addiction. He focuses on harm reduction, relapse prevention, and building a foundation for long-term recovery.",
     imageId: "counselor-8",
+    previouslyBooked: false,
+    lastAppointment: null
   },
   {
     id: "9",
@@ -82,6 +99,8 @@ const mockCounselors = [
     specialties: ["Social Anxiety", "Peer Relationships", "Loneliness"],
     description: "Ms. Brown specializes in helping students overcome social anxiety and build meaningful connections. She provides practical tools for navigating social situations and reducing feelings of isolation.",
     imageId: "counselor-9",
+    previouslyBooked: false,
+    lastAppointment: null
   },
   {
     id: "10",
@@ -90,10 +109,24 @@ const mockCounselors = [
     specialties: ["Sleep Issues", "Insomnia", "Wellness Coaching"],
     description: "Dr. Wilson helps students address sleep-related problems and develop healthy sleep habits. She also provides wellness coaching to promote overall physical and mental well-being.",
     imageId: "counselor-10",
+    previouslyBooked: false,
+    lastAppointment: null
   }
 ];
 
+if (typeof window !== 'undefined') {
+  (window as any).counselors = (window as any).counselors || initialCounselors;
+}
+
 export default function BookingPage() {
+  const [mockCounselors, setMockCounselors] = useState([]);
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      setMockCounselors((window as any).counselors);
+    }
+  }, []);
+
   return (
     <div>
       <PageHeader 
@@ -101,7 +134,7 @@ export default function BookingPage() {
         description="Browse counselor profiles and schedule your confidential appointment."
       />
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {mockCounselors.map((counselor) => {
+        {mockCounselors.map((counselor: any) => {
           const counselorImage = PlaceHolderImages.find(img => img.id === counselor.imageId);
           return (
             <Card key={counselor.id} className="flex flex-col">
@@ -121,7 +154,7 @@ export default function BookingPage() {
                   </Badge>
                 )}
                 <div className="flex flex-wrap gap-2 justify-center pt-2">
-                  {counselor.specialties.map(specialty => (
+                  {counselor.specialties.map((specialty: string) => (
                     <Badge key={specialty} variant="secondary">{specialty}</Badge>
                   ))}
                 </div>
