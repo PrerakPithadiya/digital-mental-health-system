@@ -1,7 +1,8 @@
 
+
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import PageHeader from "@/components/page-header";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -95,9 +96,25 @@ export default function ScheduleAppointmentPage() {
   const [selectedDate, setSelectedDate] = useState<Date | undefined>(new Date());
   const [selectedTime, setSelectedTime] = useState<string | null>(null);
   const [isConfirmed, setIsConfirmed] = useState(false);
+  const [formattedHistory, setFormattedHistory] = useState<{date: string, time: string} | null>(null);
 
   const counselor = mockCounselors.find(c => c.id === counselorId);
   const counselorImage = PlaceHolderImages.find(img => img.id === counselor?.imageId);
+
+  useEffect(() => {
+    if (counselor?.previouslyBooked && counselor.lastAppointment) {
+      const lastAppointmentDate = new Date(counselor.lastAppointment);
+      setFormattedHistory({
+        date: lastAppointmentDate.toLocaleDateString('en-US', {
+            weekday: 'long', month: 'long', day: 'numeric'
+        }),
+        time: lastAppointmentDate.toLocaleTimeString('en-US', {
+            hour: '2-digit', minute: '2-digit'
+        })
+      });
+    }
+  }, [counselor]);
+
 
   if (!counselor) {
     return <div>Counselor not found.</div>;
@@ -248,7 +265,7 @@ export default function ScheduleAppointmentPage() {
               </CardContent>
             </Card>
           )}
-          {counselor.previouslyBooked && counselor.lastAppointment && (
+          {counselor.previouslyBooked && formattedHistory && (
             <Card>
               <CardHeader>
                 <CardTitle className="flex items-center gap-2 text-lg">
@@ -261,17 +278,13 @@ export default function ScheduleAppointmentPage() {
                 <div className="flex items-center gap-2">
                     <CalendarIcon className="h-5 w-5 text-muted-foreground" />
                     <p className="font-medium">
-                        {new Date(counselor.lastAppointment).toLocaleDateString('en-US', {
-                            weekday: 'long', month: 'long', day: 'numeric'
-                        })}
+                        {formattedHistory.date}
                     </p>
                 </div>
                 <div className="flex items-center gap-2">
                     <Clock className="h-5 w-5 text-muted-foreground" />
                      <p className="font-medium">
-                        {new Date(counselor.lastAppointment).toLocaleTimeString('en-US', {
-                            hour: '2-digit', minute: '2-digit'
-                        })}
+                        {formattedHistory.time}
                     </p>
                 </div>
               </CardContent>
