@@ -2,6 +2,7 @@
 'use client';
 
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import PageHeader from '@/components/page-header';
 import { Button } from '@/components/ui/button';
 import {
@@ -57,6 +58,7 @@ type AccountFormValues = z.infer<typeof accountFormSchema>;
 
 export default function SettingsPage() {
   const { toast } = useToast();
+  const router = useRouter();
   const [showCurrentPassword, setShowCurrentPassword] = useState(false);
   const [showNewPassword, setShowNewPassword] = useState(false);
 
@@ -98,7 +100,7 @@ export default function SettingsPage() {
       description: 'Your account is scheduled for deletion. You will be logged out.',
       variant: 'destructive',
     });
-    // In a real app, you would also handle logging the user out.
+    router.push('/login');
   }
 
   return (
