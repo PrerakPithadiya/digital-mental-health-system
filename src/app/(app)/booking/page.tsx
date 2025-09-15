@@ -5,7 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
-import { User } from "lucide-react";
+import { User, CheckCheck } from "lucide-react";
 import Link from "next/link";
 
 const mockCounselors = [
@@ -16,6 +16,7 @@ const mockCounselors = [
     specialties: ["Anxiety", "Stress Management", "Academic Pressure"],
     description: "Dr. Reed specializes in cognitive-behavioral therapy (CBT) and helps students develop practical coping skills to manage academic stress and anxiety. She has over 10 years of experience in university counseling centers.",
     imageId: "counselor-1",
+    previouslyBooked: true,
   },
   {
     id: "2",
@@ -32,6 +33,7 @@ const mockCounselors = [
     specialties: ["Trauma", "Grief & Loss", "Mindfulness"],
     description: "Dr. Garcia has expertise in trauma-informed care and mindfulness-based stress reduction (MBSR). She is dedicated to helping students find resilience and healing in the face of adversity.",
     imageId: "counselor-3",
+    previouslyBooked: true,
   },
   {
     id: "4",
@@ -112,6 +114,12 @@ export default function BookingPage() {
                 </Avatar>
                 <CardTitle className="font-headline text-xl">{counselor.name}</CardTitle>
                 <CardDescription>{counselor.title}</CardDescription>
+                {counselor.previouslyBooked && (
+                  <Badge variant="outline" className="mt-2 border-green-500 text-green-600">
+                    <CheckCheck className="mr-1.5 h-4 w-4" />
+                    Previously Booked
+                  </Badge>
+                )}
                 <div className="flex flex-wrap gap-2 justify-center pt-2">
                   {counselor.specialties.map(specialty => (
                     <Badge key={specialty} variant="secondary">{specialty}</Badge>
