@@ -1,5 +1,3 @@
-
-
 "use client"
 
 import * as React from "react"
@@ -715,7 +713,7 @@ const SidebarMenuSubButton = React.forwardRef<
     isActive?: boolean
   }
 >(({ size = "md", isActive, asChild = false, className, ...props }, ref) => {
-  const Comp = asChild ? Slot : "button"
+  const Comp = asChild ? Slot : "button";
   return (
     <Comp
       ref={ref}

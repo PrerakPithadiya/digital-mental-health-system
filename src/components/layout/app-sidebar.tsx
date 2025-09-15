@@ -1,5 +1,3 @@
-
-
 'use client';
 
 import { usePathname } from 'next/navigation';
@@ -84,28 +82,28 @@ export default function AppSidebar() {
                         <SidebarMenuSubItem>
                             <Link href='/forums'>
                               <SidebarMenuSubButton asChild isActive={pathname === '/forums'}>
-                                  <span>All Posts</span>
+                                <span>All Posts</span>
                               </SidebarMenuSubButton>
                             </Link>
                         </SidebarMenuSubItem>
                         <SidebarMenuSubItem>
-                             <Link href='/forums/saved'>
-                              <SidebarMenuSubButton asChild isActive={pathname === '/forums/saved'}>
-                                <>
-                                  <Bookmark />
-                                  <span>Saved Posts</span>
-                                </>
-                              </SidebarMenuSubButton>
+                            <Link href='/forums/saved'>
+                                <SidebarMenuSubButton asChild isActive={pathname === '/forums/saved'}>
+                                    <>
+                                        <Bookmark />
+                                        <span>Saved Posts</span>
+                                    </>
+                                </SidebarMenuSubButton>
                             </Link>
                         </SidebarMenuSubItem>
                         <SidebarMenuSubItem>
-                           <Link href='/forums/liked'>
-                              <SidebarMenuSubButton asChild isActive={pathname === '/forums/liked'}>
-                                <>
-                                  <Heart />
-                                  <span>Liked Posts</span>
-                                </>
-                              </SidebarMenuSubButton>
+                            <Link href='/forums/liked'>
+                                <SidebarMenuSubButton asChild isActive={pathname === '/forums/liked'}>
+                                    <>
+                                        <Heart />
+                                        <span>Liked Posts</span>
+                                    </>
+                                </SidebarMenuSubButton>
                             </Link>
                         </SidebarMenuSubItem>
                         </SidebarMenuSub>

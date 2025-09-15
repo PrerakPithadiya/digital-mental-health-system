@@ -180,7 +180,7 @@ const initialResources: Omit<Resource, '_id'>[] = [
         category: 'Self-Care',
         subcategory: 'Emotional Self-Care',
         title: 'Emotional Self-Care: 10 Ways to Nurture Your Inner World',
-        url: 'https://www.psychologytoday.com/us/blog/click-here-happiness/201812/emotional-self-care-10-ways-nurture-your-inner-world',
+        url: 'https://www.psychologytoday.com/us/blog/click-here-for-happiness/201812/emotional-self-care-10-ways-nurture-your-inner-world',
         source: 'Psychology Today',
     },
     {
