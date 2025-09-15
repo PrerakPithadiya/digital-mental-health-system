@@ -8,7 +8,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
-import { User, Calendar as CalendarIcon, Clock, CheckCircle } from "lucide-react";
+import { User, Calendar as CalendarIcon, Clock, CheckCircle, ArrowLeft } from "lucide-react";
 import { Calendar } from '@/components/ui/calendar';
 import { cn } from '@/lib/utils';
 import { useToast } from '@/hooks/use-toast';
@@ -165,6 +165,14 @@ export default function ScheduleAppointmentPage() {
         title="Schedule Your Appointment"
         description={`Booking a session with ${counselor.name}.`}
       />
+      <div className="mb-6">
+        <Button variant="outline" asChild>
+          <Link href="/booking">
+            <ArrowLeft className="mr-2 h-4 w-4" />
+            Back to Counselors
+          </Link>
+        </Button>
+      </div>
       <div className="grid md:grid-cols-3 gap-8">
         <div className="md:col-span-2">
           <Card>
