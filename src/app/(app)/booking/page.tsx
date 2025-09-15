@@ -1,3 +1,4 @@
+
 import PageHeader from "@/components/page-header";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
@@ -31,6 +32,62 @@ const mockCounselors = [
     specialties: ["Trauma", "Grief & Loss", "Mindfulness"],
     description: "Dr. Garcia has expertise in trauma-informed care and mindfulness-based stress reduction (MBSR). She is dedicated to helping students find resilience and healing in the face of adversity.",
     imageId: "counselor-3",
+  },
+  {
+    id: "4",
+    name: "Dr. Samuel Jones",
+    title: "Licensed Mental Health Counselor",
+    specialties: ["ADHD", "Behavioral Issues", "Coping Skills"],
+    description: "Dr. Jones works with students to develop strategies for managing ADHD and other behavioral challenges. He focuses on creating personalized plans that foster academic and personal success.",
+    imageId: "counselor-4",
+  },
+  {
+    id: "5",
+    name: "Ms. Aisha Khan",
+    title: "Marriage and Family Therapist",
+    specialties: ["Relationship Counseling", "Family Conflict", "Communication"],
+    description: "Ms. Khan helps students navigate the complexities of interpersonal relationships, offering guidance on communication, conflict resolution, and building healthy connections.",
+    imageId: "counselor-5",
+  },
+  {
+    id: "6",
+    name: "Dr. Ben Carter",
+    title: "Clinical Psychologist",
+    specialties: ["Eating Disorders", "Body Image", "Self-Esteem"],
+    description: "Dr. Carter provides specialized support for students dealing with eating disorders and body image concerns. He uses an evidence-based, compassionate approach to promote healing and self-acceptance.",
+    imageId: "counselor-6",
+  },
+  {
+    id: "7",
+    name: "Dr. Chloe Williams",
+    title: "Counseling Psychologist",
+    specialties: ["Career Counseling", "Life Transitions", "Identity"],
+    description: "Dr. Williams assists students in exploring their career paths, navigating major life transitions, and understanding their personal identity. She empowers students to make choices that align with their values and goals.",
+    imageId: "counselor-7",
+  },
+  {
+    id: "8",
+    name: "Mr. Leo Martinez",
+    title: "Licensed Professional Counselor",
+    specialties: ["Substance Abuse", "Addiction", "Recovery"],
+    description: "Mr. Martinez offers a supportive space for students struggling with substance use and addiction. He focuses on harm reduction, relapse prevention, and building a foundation for long-term recovery.",
+    imageId: "counselor-8",
+  },
+  {
+    id: "9",
+    name: "Ms. Sophia Brown",
+    title: "Clinical Social Worker",
+    specialties: ["Social Anxiety", "Peer Relationships", "Loneliness"],
+    description: "Ms. Brown specializes in helping students overcome social anxiety and build meaningful connections. She provides practical tools for navigating social situations and reducing feelings of isolation.",
+    imageId: "counselor-9",
+  },
+  {
+    id: "10",
+    name: "Dr. Olivia Wilson",
+    title: "Psychologist",
+    specialties: ["Sleep Issues", "Insomnia", "Wellness Coaching"],
+    description: "Dr. Wilson helps students address sleep-related problems and develop healthy sleep habits. She also provides wellness coaching to promote overall physical and mental well-being.",
+    imageId: "counselor-10",
   }
 ];
 

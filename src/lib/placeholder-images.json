@@ -54,6 +54,48 @@
       "description": "Portrait of a counselor",
       "imageUrl": "https://picsum.photos/seed/counselor3/100/100",
       "imageHint": "professional portrait"
+    },
+    {
+      "id": "counselor-4",
+      "description": "Portrait of a counselor",
+      "imageUrl": "https://picsum.photos/seed/counselor4/100/100",
+      "imageHint": "professional portrait"
+    },
+    {
+      "id": "counselor-5",
+      "description": "Portrait of a counselor",
+      "imageUrl": "https://picsum.photos/seed/counselor5/100/100",
+      "imageHint": "professional portrait"
+    },
+    {
+      "id": "counselor-6",
+      "description": "Portrait of a counselor",
+      "imageUrl": "https://picsum.photos/seed/counselor6/100/100",
+      "imageHint": "professional portrait"
+    },
+    {
+      "id": "counselor-7",
+      "description": "Portrait of a counselor",
+      "imageUrl": "https://picsum.photos/seed/counselor7/100/100",
+      "imageHint": "professional portrait"
+    },
+    {
+      "id": "counselor-8",
+      "description": "Portrait of a counselor",
+      "imageUrl": "https://picsum.photos/seed/counselor8/100/100",
+      "imageHint": "professional portrait"
+    },
+    {
+      "id": "counselor-9",
+      "description": "Portrait of a counselor",
+      "imageUrl": "https://picsum.photos/seed/counselor9/100/100",
+      "imageHint": "professional portrait"
+    },
+    {
+      "id": "counselor-10",
+      "description": "Portrait of a counselor",
+      "imageUrl": "https://picsum.photos/seed/counselor10/100/100",
+      "imageHint": "professional portrait"
     }
   ]
 }

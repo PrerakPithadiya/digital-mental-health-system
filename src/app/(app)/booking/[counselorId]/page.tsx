@@ -32,7 +32,49 @@ const mockCounselors = [
     id: "3",
     name: "Dr. Maria Garcia",
     title: "Psychologist",
-imageId: "counselor-3",
+    imageId: "counselor-3",
+  },
+  {
+    id: "4",
+    name: "Dr. Samuel Jones",
+    title: "Licensed Mental Health Counselor",
+    imageId: "counselor-4",
+  },
+  {
+    id: "5",
+    name: "Ms. Aisha Khan",
+    title: "Marriage and Family Therapist",
+    imageId: "counselor-5",
+  },
+  {
+    id: "6",
+    name: "Dr. Ben Carter",
+    title: "Clinical Psychologist",
+    imageId: "counselor-6",
+  },
+  {
+    id: "7",
+    name: "Dr. Chloe Williams",
+    title: "Counseling Psychologist",
+    imageId: "counselor-7",
+  },
+  {
+    id: "8",
+    name: "Mr. Leo Martinez",
+    title: "Licensed Professional Counselor",
+    imageId: "counselor-8",
+  },
+  {
+    id: "9",
+    name: "Ms. Sophia Brown",
+    title: "Clinical Social Worker",
+imageId: "counselor-9",
+  },
+  {
+    id: "10",
+    name: "Dr. Olivia Wilson",
+    title: "Psychologist",
+    imageId: "counselor-10",
   }
 ];
 
