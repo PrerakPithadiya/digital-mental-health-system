@@ -8,7 +8,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
-import { User, Calendar as CalendarIcon, Clock, CheckCircle, ArrowLeft } from "lucide-react";
+import { User, Calendar as CalendarIcon, Clock, CheckCircle, ArrowLeft, History } from "lucide-react";
 import { Calendar } from '@/components/ui/calendar';
 import { cn } from '@/lib/utils';
 import { useToast } from '@/hooks/use-toast';
@@ -21,6 +21,8 @@ const mockCounselors = [
     name: "Dr. Evelyn Reed",
     title: "Licensed Professional Counselor",
     imageId: "counselor-1",
+    previouslyBooked: true,
+    lastAppointment: "2024-06-20T14:00:00Z"
   },
   {
     id: "2",
@@ -33,6 +35,8 @@ const mockCounselors = [
     name: "Dr. Maria Garcia",
     title: "Psychologist",
     imageId: "counselor-3",
+    previouslyBooked: true,
+    lastAppointment: "2024-05-10T11:00:00Z"
   },
   {
     id: "4",
@@ -244,8 +248,39 @@ export default function ScheduleAppointmentPage() {
               </CardContent>
             </Card>
           )}
+          {counselor.previouslyBooked && counselor.lastAppointment && (
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2 text-lg">
+                  <History className="h-5 w-5 text-primary" />
+                  Your History
+                </CardTitle>
+                <CardDescription>Your last appointment with {counselor.name}.</CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-2">
+                <div className="flex items-center gap-2">
+                    <CalendarIcon className="h-5 w-5 text-muted-foreground" />
+                    <p className="font-medium">
+                        {new Date(counselor.lastAppointment).toLocaleDateString('en-US', {
+                            weekday: 'long', month: 'long', day: 'numeric'
+                        })}
+                    </p>
+                </div>
+                <div className="flex items-center gap-2">
+                    <Clock className="h-5 w-5 text-muted-foreground" />
+                     <p className="font-medium">
+                        {new Date(counselor.lastAppointment).toLocaleTimeString('en-US', {
+                            hour: '2-digit', minute: '2-digit'
+                        })}
+                    </p>
+                </div>
+              </CardContent>
+            </Card>
+          )}
         </div>
       </div>
     </div>
   );
 }
+
+    
