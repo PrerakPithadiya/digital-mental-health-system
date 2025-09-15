@@ -118,7 +118,7 @@ export default function ForumsPage() {
 
 
   return (
-    <div className="max-w-4xl mx-auto">
+    <div>
       <PageHeader
         title="Peer Support Forums"
         description="Connect with other students in a safe, anonymous, and moderated environment."
