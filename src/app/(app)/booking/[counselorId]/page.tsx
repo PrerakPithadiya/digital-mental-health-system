@@ -138,7 +138,7 @@ export default function ScheduleAppointmentPage() {
 
   if (isConfirmed) {
     return (
-        <div>
+        <div className="flex flex-col items-center justify-center">
             <PageHeader 
                 title="Appointment Confirmed!"
                 description="Your session has been successfully booked."
@@ -295,5 +295,3 @@ export default function ScheduleAppointmentPage() {
     </div>
   );
 }
-
-    
