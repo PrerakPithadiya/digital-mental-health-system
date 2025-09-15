@@ -83,23 +83,23 @@ export default function AppSidebar() {
                         <SidebarMenuSubItem>
                             <Link href='/forums'>
                               <SidebarMenuSubButton asChild isActive={pathname === '/forums'}>
-                                  <a><span>All Posts</span></a>
+                                  <span>All Posts</span>
                               </SidebarMenuSubButton>
                             </Link>
                         </SidebarMenuSubItem>
                         <SidebarMenuSubItem>
                             <Link href='/forums/saved'>
                               <SidebarMenuSubButton asChild isActive={pathname === '/forums/saved'}>
-                                  <a><Bookmark />
-                                  <span>Saved Posts</span></a>
+                                  <Bookmark />
+                                  <span>Saved Posts</span>
                               </SidebarMenuSubButton>
                             </Link>
                         </SidebarMenuSubItem>
                         <SidebarMenuSubItem>
                             <Link href='/forums/liked'>
                               <SidebarMenuSubButton asChild isActive={pathname === '/forums/liked'}>
-                                  <a><Heart />
-                                  <span>Liked Posts</span></a>
+                                  <Heart />
+                                  <span>Liked Posts</span>
                               </SidebarMenuSubButton>
                             </Link>
                         </SidebarMenuSubItem>
