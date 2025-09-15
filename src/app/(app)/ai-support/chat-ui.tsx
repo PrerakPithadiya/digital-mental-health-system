@@ -61,7 +61,7 @@ export default function AiChat() {
   };
 
   return (
-    <Card className="flex flex-col h-full w-full max-w-3xl mx-auto shadow-lg">
+    <Card className="flex flex-col h-full w-full shadow-lg">
       <CardHeader className='hidden'>
       </CardHeader>
       <CardContent className="flex-1 p-0 overflow-hidden">

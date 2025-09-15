@@ -8,7 +8,7 @@ export default function AiSupportPage() {
         title="AI-Guided First-Aid"
         description="I'm a friendly AI assistant here to help. Describe what you're feeling, and I can offer some initial guidance and coping strategies. This is a safe and confidential space."
       />
-      <div className="flex-1 min-h-0">
+      <div className="flex-1 min-h-0 flex justify-center">
          <AiChat />
       </div>
     </div>
