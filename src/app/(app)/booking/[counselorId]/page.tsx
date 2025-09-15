@@ -23,7 +23,7 @@ const initialCounselors = [
     title: "Licensed Professional Counselor",
     imageId: "counselor-1",
     previouslyBooked: true,
-    lastAppointment: "2024-06-20T14:00:00Z"
+    appointments: ["2024-06-20T14:00:00Z"]
   },
   {
     id: "2",
@@ -31,7 +31,7 @@ const initialCounselors = [
     title: "Clinical Social Worker",
     imageId: "counselor-2",
     previouslyBooked: false,
-    lastAppointment: null
+    appointments: []
   },
   {
     id: "3",
@@ -39,7 +39,7 @@ const initialCounselors = [
     title: "Psychologist",
     imageId: "counselor-3",
     previouslyBooked: true,
-    lastAppointment: "2024-05-10T11:00:00Z"
+    appointments: ["2024-05-10T11:00:00Z"]
   },
   {
     id: "4",
@@ -47,7 +47,7 @@ const initialCounselors = [
     title: "Licensed Mental Health Counselor",
     imageId: "counselor-4",
     previouslyBooked: false,
-    lastAppointment: null
+    appointments: []
   },
   {
     id: "5",
@@ -55,7 +55,7 @@ const initialCounselors = [
     title: "Marriage and Family Therapist",
     imageId: "counselor-5",
     previouslyBooked: false,
-    lastAppointment: null
+    appointments: []
   },
   {
     id: "6",
@@ -63,7 +63,7 @@ const initialCounselors = [
     title: "Clinical Psychologist",
     imageId: "counselor-6",
     previouslyBooked: false,
-    lastAppointment: null
+    appointments: []
   },
   {
     id: "7",
@@ -71,7 +71,7 @@ const initialCounselors = [
     title: "Counseling Psychologist",
     imageId: "counselor-7",
     previouslyBooked: false,
-    lastAppointment: null
+    appointments: []
   },
   {
     id: "8",
@@ -79,7 +79,7 @@ const initialCounselors = [
     title: "Licensed Professional Counselor",
     imageId: "counselor-8",
     previouslyBooked: false,
-    lastAppointment: null
+    appointments: []
   },
   {
     id: "9",
@@ -87,7 +87,7 @@ const initialCounselors = [
     title: "Clinical Social Worker",
     imageId: "counselor-9",
     previouslyBooked: false,
-    lastAppointment: null
+    appointments: []
   },
   {
     id: "10",
@@ -95,7 +95,7 @@ const initialCounselors = [
     title: "Psychologist",
     imageId: "counselor-10",
     previouslyBooked: false,
-    lastAppointment: null
+    appointments: []
   }
 ];
 
@@ -119,22 +119,21 @@ export default function ScheduleAppointmentPage() {
   const [selectedDate, setSelectedDate] = useState<Date | undefined>(new Date());
   const [selectedTime, setSelectedTime] = useState<string | null>(null);
   const [isConfirmed, setIsConfirmed] = useState(false);
-  const [formattedHistory, setFormattedHistory] = useState<{date: string, time: string} | null>(null);
+  const [formattedHistory, setFormattedHistory] = useState<{date: string, time: string}[]>([]);
 
   const counselor = mockCounselors.find((c: any) => c.id === counselorId);
   const counselorImage = PlaceHolderImages.find(img => img.id === counselor?.imageId);
 
   useEffect(() => {
-    if (counselor?.previouslyBooked && counselor.lastAppointment) {
-      const lastAppointmentDate = new Date(counselor.lastAppointment);
-      setFormattedHistory({
-        date: lastAppointmentDate.toLocaleDateString('en-US', {
-            weekday: 'long', month: 'long', day: 'numeric'
-        }),
-        time: lastAppointmentDate.toLocaleTimeString('en-US', {
-            hour: '2-digit', minute: '2-digit'
-        })
-      });
+    if (counselor?.previouslyBooked && counselor.appointments.length > 0) {
+      const history = counselor.appointments.map((appt: string) => {
+          const apptDate = new Date(appt);
+          return {
+            date: apptDate.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' }),
+            time: apptDate.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' }),
+          };
+      }).sort((a: { date: string, time: string }, b: { date: string, time: string }) => new Date(b.date).getTime() - new Date(a.date).getTime());
+      setFormattedHistory(history);
     }
   }, [counselor]);
 
@@ -162,7 +161,7 @@ export default function ScheduleAppointmentPage() {
           return {
             ...c,
             previouslyBooked: true,
-            lastAppointment: newAppointmentDateTime.toISOString(),
+            appointments: [...c.appointments, newAppointmentDateTime.toISOString()],
           };
         }
         return c;
@@ -316,28 +315,32 @@ export default function ScheduleAppointmentPage() {
               </CardContent>
             </Card>
           )}
-          {counselor.previouslyBooked && formattedHistory && (
+          {counselor.previouslyBooked && formattedHistory.length > 0 && (
             <Card>
               <CardHeader>
                 <CardTitle className="flex items-center gap-2 text-lg">
                   <History className="h-5 w-5 text-primary" />
                   Your History
                 </CardTitle>
-                <CardDescription>Your last appointment with {counselor.name}.</CardDescription>
+                <CardDescription>Your past appointments with {counselor.name}.</CardDescription>
               </CardHeader>
-              <CardContent className="space-y-2">
-                <div className="flex items-center gap-2">
-                    <CalendarIcon className="h-5 w-5 text-muted-foreground" />
-                    <p className="font-medium">
-                        {formattedHistory.date}
-                    </p>
-                </div>
-                <div className="flex items-center gap-2">
-                    <Clock className="h-5 w-5 text-muted-foreground" />
-                     <p className="font-medium">
-                        {formattedHistory.time}
-                    </p>
-                </div>
+              <CardContent className="space-y-4">
+                {formattedHistory.map((appt, index) => (
+                  <div key={index} className="space-y-2 border-b pb-2 last:border-b-0 last:pb-0">
+                    <div className="flex items-center gap-2">
+                        <CalendarIcon className="h-5 w-5 text-muted-foreground" />
+                        <p className="font-medium">
+                            {appt.date}
+                        </p>
+                    </div>
+                    <div className="flex items-center gap-2">
+                        <Clock className="h-5 w-5 text-muted-foreground" />
+                         <p className="font-medium">
+                            {appt.time}
+                        </p>
+                    </div>
+                  </div>
+                ))}
               </CardContent>
             </Card>
           )}
