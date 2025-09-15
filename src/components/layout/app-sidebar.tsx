@@ -1,4 +1,5 @@
 
+
 'use client';
 
 import { usePathname } from 'next/navigation';
@@ -88,18 +89,22 @@ export default function AppSidebar() {
                             </Link>
                         </SidebarMenuSubItem>
                         <SidebarMenuSubItem>
-                            <Link href='/forums/saved'>
+                             <Link href='/forums/saved'>
                               <SidebarMenuSubButton asChild isActive={pathname === '/forums/saved'}>
+                                <>
                                   <Bookmark />
                                   <span>Saved Posts</span>
+                                </>
                               </SidebarMenuSubButton>
                             </Link>
                         </SidebarMenuSubItem>
                         <SidebarMenuSubItem>
-                            <Link href='/forums/liked'>
+                           <Link href='/forums/liked'>
                               <SidebarMenuSubButton asChild isActive={pathname === '/forums/liked'}>
+                                <>
                                   <Heart />
                                   <span>Liked Posts</span>
+                                </>
                               </SidebarMenuSubButton>
                             </Link>
                         </SidebarMenuSubItem>

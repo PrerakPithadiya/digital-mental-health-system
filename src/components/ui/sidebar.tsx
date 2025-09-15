@@ -1,4 +1,5 @@
 
+
 "use client"
 
 import * as React from "react"
@@ -708,7 +709,7 @@ SidebarMenuSubItem.displayName = "SidebarMenuSubItem"
 
 const SidebarMenuSubButton = React.forwardRef<
   HTMLButtonElement,
-  React.ButtonHTMLAttributes<HTMLButtonElement> & {
+  React.HTMLAttributes<HTMLElement> & {
     asChild?: boolean
     size?: "sm" | "md"
     isActive?: boolean
