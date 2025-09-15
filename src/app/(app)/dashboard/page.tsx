@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { ArrowRight, Bot, CalendarCheck, Library, ShieldAlert } from "lucide-react";
+import { ArrowRight, Bot, CalendarCheck, Library, MessageSquare, ShieldAlert, User } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
@@ -9,6 +9,8 @@ import MoodCheckin from "@/components/dashboard/mood-checkin";
 
 const bookingImage = PlaceHolderImages.find(img => img.id === 'booking-card');
 const resourcesImage = PlaceHolderImages.find(img => img.id === 'resources-card');
+const forumsImage = PlaceHolderImages.find(img => img.id === 'forums-card');
+const profileImage = PlaceHolderImages.find(img => img.id === 'profile-card');
 
 export default async function DashboardPage() {
 
@@ -95,6 +97,54 @@ export default async function DashboardPage() {
           <CardContent>
             <Button variant="secondary" asChild>
               <Link href="/resources">Explore Resources</Link>
+            </Button>
+          </CardContent>
+        </Card>
+
+        <Card className="hover:shadow-lg transition-shadow">
+          {forumsImage && 
+            <div className="aspect-video w-full overflow-hidden rounded-t-lg">
+              <Image 
+                src={forumsImage.imageUrl} 
+                alt={forumsImage.description} 
+                width={400} 
+                height={250} 
+                className="w-full h-full object-cover"
+                data-ai-hint={forumsImage.imageHint}
+              />
+            </div>
+          }
+          <CardHeader>
+            <CardTitle className="font-headline flex items-center gap-2"><MessageSquare className="text-primary"/>Peer Support Forums</CardTitle>
+            <CardDescription>Connect with others in a safe, anonymous discussion space.</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <Button variant="secondary" asChild>
+              <Link href="/forums">Join the Discussion</Link>
+            </Button>
+          </CardContent>
+        </Card>
+        
+        <Card className="hover:shadow-lg transition-shadow">
+          {profileImage && 
+            <div className="aspect-video w-full overflow-hidden rounded-t-lg">
+              <Image 
+                src={profileImage.imageUrl} 
+                alt={profileImage.description} 
+                width={400} 
+                height={250} 
+                className="w-full h-full object-cover"
+                data-ai-hint={profileImage.imageHint}
+              />
+            </div>
+          }
+          <CardHeader>
+            <CardTitle className="font-headline flex items-center gap-2"><User className="text-primary"/>Your Profile</CardTitle>
+            <CardDescription>Manage your public profile, settings, and preferences.</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <Button variant="secondary" asChild>
+              <Link href="/profile">View Profile</Link>
             </Button>
           </CardContent>
         </Card>

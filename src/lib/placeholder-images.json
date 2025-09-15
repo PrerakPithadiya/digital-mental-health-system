@@ -26,6 +26,18 @@
       "imageHint": "wellness journey"
     },
     {
+      "id": "forums-card",
+      "description": "Image for the forums card",
+      "imageUrl": "https://picsum.photos/seed/community-support/400/250",
+      "imageHint": "community support"
+    },
+    {
+      "id": "profile-card",
+      "description": "Image for the profile card",
+      "imageUrl": "https://picsum.photos/seed/personal-growth/400/250",
+      "imageHint": "personal growth"
+    },
+    {
       "id": "counselor-1",
       "description": "Portrait of a counselor",
       "imageUrl": "https://picsum.photos/seed/counselor1/100/100",
