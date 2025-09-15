@@ -1,16 +1,18 @@
+
 'use client';
 
 import { useState } from 'react';
-import { useParams } from 'next/navigation';
+import { useParams, useRouter } from 'next/navigation';
 import PageHeader from "@/components/page-header";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { PlaceHolderImages } from "@/lib/placeholder-images";
-import { User, Calendar as CalendarIcon, Clock } from "lucide-react";
+import { User, Calendar as CalendarIcon, Clock, CheckCircle } from "lucide-react";
 import { Calendar } from '@/components/ui/calendar';
 import { cn } from '@/lib/utils';
 import { useToast } from '@/hooks/use-toast';
+import Link from 'next/link';
 
 // Mock data - in a real app, this would come from an API
 const mockCounselors = [
@@ -40,11 +42,13 @@ const availableTimes = [
 
 export default function ScheduleAppointmentPage() {
   const params = useParams();
+  const router = useRouter();
   const { toast } = useToast();
   const counselorId = params.counselorId as string;
   
   const [selectedDate, setSelectedDate] = useState<Date | undefined>(new Date());
   const [selectedTime, setSelectedTime] = useState<string | null>(null);
+  const [isConfirmed, setIsConfirmed] = useState(false);
 
   const counselor = mockCounselors.find(c => c.id === counselorId);
   const counselorImage = PlaceHolderImages.find(img => img.id === counselor?.imageId);
@@ -59,8 +63,7 @@ export default function ScheduleAppointmentPage() {
         title: "Appointment Confirmed!",
         description: `Your appointment with ${counselor.name} is set for ${selectedDate.toLocaleDateString()} at ${selectedTime}.`,
       });
-      // Here you would typically redirect or update UI state
-      setSelectedTime(null);
+      setIsConfirmed(true);
     } else {
       toast({
         title: "Incomplete Selection",
@@ -69,6 +72,28 @@ export default function ScheduleAppointmentPage() {
       });
     }
   };
+
+  if (isConfirmed) {
+    return (
+        <div>
+            <PageHeader 
+                title="Appointment Confirmed!"
+                description="Your session has been successfully booked."
+            />
+            <Card className="max-w-md mx-auto text-center">
+                <CardContent className="p-8 flex flex-col items-center gap-4">
+                    <CheckCircle className="h-16 w-16 text-green-500" />
+                    <p className="text-lg">
+                        Your appointment with <strong>{counselor.name}</strong> on <strong>{selectedDate?.toLocaleDateString()}</strong> at <strong>{selectedTime}</strong> is confirmed.
+                    </p>
+                    <Button asChild className="w-full mt-4">
+                        <Link href="/booking">Book Another Appointment</Link>
+                    </Button>
+                </CardContent>
+            </Card>
+        </div>
+    )
+  }
 
   return (
     <div>
