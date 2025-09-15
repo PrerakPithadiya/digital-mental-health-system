@@ -154,7 +154,7 @@ export default function BookingPage() {
                   </Badge>
                 )}
                 <div className="flex flex-wrap gap-2 justify-center pt-2">
-                  {counselor.specialties.map((specialty: string) => (
+                  {counselor.specialties?.map((specialty: string) => (
                     <Badge key={specialty} variant="secondary">{specialty}</Badge>
                   ))}
                 </div>
