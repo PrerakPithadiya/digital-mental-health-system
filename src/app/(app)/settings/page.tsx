@@ -97,10 +97,10 @@ export default function SettingsPage() {
   function onDeleteAccount() {
      toast({
       title: 'Account Deletion Requested',
-      description: 'Your account is scheduled for deletion. You will be logged out.',
+      description: 'Your account is scheduled for deletion.',
       variant: 'destructive',
     });
-    router.push('/login');
+    router.push('/dashboard');
   }
 
   return (

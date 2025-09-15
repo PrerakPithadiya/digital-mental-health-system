@@ -54,12 +54,6 @@
       "description": "Portrait of a counselor",
       "imageUrl": "https://picsum.photos/seed/counselor3/100/100",
       "imageHint": "professional portrait"
-    },
-    {
-      "id": "auth-background",
-      "description": "A tranquil, modern university campus library with soft, natural light.",
-      "imageUrl": "https://picsum.photos/seed/university-library/1080/1920",
-      "imageHint": "university library"
     }
   ]
 }
